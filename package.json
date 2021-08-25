@@ -8,20 +8,28 @@
   },
   "scripts": {
     "start": "fastify start -l info app.js",
-    "dev": "fastify start -w -l info -P app.js"
+    "dev:client": "yarn --cwd client/ start",
+    "dev:server": "fastify start -w -l info -P -p 3003 --ignore-watch='client' app.js",
+    "dev": "concurrently \"yarn dev:server\" \"yarn dev:client\""
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yuruyu6/cryptomining-calc.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "react",
+    "fastify",
+    "cryptomining",
+    "crypto"
+  ],
+  "author": "Yurii Hrom",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/yuruyu6/cryptomining-calc/issues"
   },
   "homepage": "https://github.com/yuruyu6/cryptomining-calc#readme",
   "dependencies": {
+    "concurrently": "^6.2.1",
     "dotenv": "^10.0.0",
     "fastify": "^3.0.0",
     "fastify-autoload": "^3.3.1",
