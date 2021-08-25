@@ -1,0 +1,38 @@
+{
+  "name": "cryptomining-calc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "fastify start -l info app.js",
+    "dev": "fastify start -w -l info -P app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuruyu6/cryptomining-calc.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yuruyu6/cryptomining-calc/issues"
+  },
+  "homepage": "https://github.com/yuruyu6/cryptomining-calc#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "fastify": "^3.0.0",
+    "fastify-autoload": "^3.3.1",
+    "fastify-axios": "^1.2.3",
+    "fastify-cli": "^2.13.0",
+    "fastify-cron": "^1.1.2",
+    "fastify-mysql": "^2.1.0",
+    "fastify-plugin": "^3.0.0",
+    "fastify-sensible": "^3.1.0"
+  },
+  "devDependencies": {
+    "tap": "^15.0.9"
+  }
+}
