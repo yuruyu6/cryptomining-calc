@@ -2,9 +2,9 @@ import React from 'react'
 
 export const Loader: React.FC = () => {
   return (
-    <div className="flex items-center text-2xl text-gray-600 p-2">
+    <div className="flex items-center text-2xl p-2">
       <svg
-        className="animate-spin mr-2 h-7 w-7 text-gray-700"
+        className="animate-spin mr-2 h-7 w-7 text-white"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"

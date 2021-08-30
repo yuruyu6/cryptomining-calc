@@ -7,14 +7,7 @@ interface Props {
 
 export const App: React.FC<Props> = ({ myText }) => {
   return (
-    <div>
-      <Loader />
-      <Loader />
-      <Loader />
-      <Loader />
-      <Loader />
-      <Loader />
-      <Loader />
+    <div className="bg-gray-800 min-h-screen">
       <Loader />
     </div>
   )
