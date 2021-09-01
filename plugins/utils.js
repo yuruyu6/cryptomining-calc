@@ -1,4 +1,10 @@
 const fp = require('fastify-plugin')
+const NodeCache = require('node-cache')
+const memoryStorage = new NodeCache({
+  stdTTL: 300,
+  checkperiod: 150,
+  useClones: false,
+})
 
 module.exports = fp(async function (fastify, opts) {
   fastify.decorate('updateHistoryJob', async () => {
@@ -17,6 +23,26 @@ module.exports = fp(async function (fastify, opts) {
         console.log('sucessful update')
     } else {
       console.log('Cronjob ERROR >>> Server Not Accessible')
+    }
+  })
+
+  fastify.decorate('getEthRate', async () => {
+    const memoryEthRate = memoryStorage.get('ethRate')
+    if (memoryEthRate === undefined) {
+      const { data, status } = await fastify.axios.get(
+        `https://rest.coinapi.io/v1/exchangerate/ETH/USDT?apikey=${process.env.COINAPI_API_KEY}`
+      )
+      if (status === 200) {
+        const { rate } = data
+        memoryStorage.set('ethRate', rate)
+        return rate
+      } else {
+        throw new Error(
+          'getEthRate API function ERROR >>> Server Not Accessible'
+        )
+      }
+    } else {
+      return memoryEthRate
     }
   })
 })

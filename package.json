@@ -38,7 +38,8 @@
     "fastify-cron": "^1.1.2",
     "fastify-mysql": "^2.1.0",
     "fastify-plugin": "^3.0.0",
-    "fastify-sensible": "^3.1.0"
+    "fastify-sensible": "^3.1.0",
+    "node-cache": "^5.1.2"
   },
   "devDependencies": {
     "prettier": "2.3.2",

@@ -5,7 +5,7 @@ import './index.css'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App myText='sa' />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 )

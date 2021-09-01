@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Loader: React.FC = () => {
   return (
-    <div className="flex items-center text-2xl p-2">
+    <div className="flex items-center p-2">
       <svg
         className="animate-spin mr-2 h-7 w-7 text-white"
         xmlns="http://www.w3.org/2000/svg"
@@ -15,7 +15,7 @@ export const Loader: React.FC = () => {
           cy="12"
           r="10"
           stroke="currentColor"
-          stroke-width="4"
+          strokeWidth="4"
         ></circle>
         <path
           className="opacity-75"

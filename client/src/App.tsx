@@ -1,14 +1,12 @@
 import React from 'react'
-import { Loader } from './components/ui/Loader'
+import { Dashboard } from './components/Dashboard'
 
-interface Props {
-  myText: string
-}
-
-export const App: React.FC<Props> = ({ myText }) => {
+export const App: React.FC = () => {
   return (
     <div className="bg-gray-800 min-h-screen">
-      <Loader />
+      <div className="md:container mx-auto p-4 relative top-20">
+        <Dashboard />
+      </div>
     </div>
   )
 }
