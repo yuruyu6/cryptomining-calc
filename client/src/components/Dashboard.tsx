@@ -6,6 +6,8 @@ import { Header } from './Header'
 import { EthereumSVG } from './svgs/Ethereum'
 import { Loader } from './ui/Loader'
 
+const dashboardExampleHashrate: number = 100
+
 export const Dashboard: React.FC = () => {
   const [isAppLoading, setIsAppLoading] = useState(true)
   const [currentEthRate, setCurrentEthRate] = useState<
@@ -16,13 +18,14 @@ export const Dashboard: React.FC = () => {
   )
   const [calculatedEarning, setCalculatedEarning] = useState(0)
 
-  useEffect(() => {
-    async function fetchData() {
-      setCurrentEthRate(await getCurrentEthRate())
-      setEarningsInfo(await getEthEarningsInfo())
-      setIsAppLoading(false)
-    }
+  async function fetchData() {
+    setIsAppLoading(true)
+    setCurrentEthRate(await getCurrentEthRate())
+    setEarningsInfo(await getEthEarningsInfo())
+    setIsAppLoading(false)
+  }
 
+  useEffect(() => {
     fetchData()
   }, [])
 
@@ -31,7 +34,8 @@ export const Dashboard: React.FC = () => {
       setCalculatedEarning(
         calcCryptoEarnings(
           currentEthRate.ethUsdRate,
-          earningsInfo.expectedReward24H
+          earningsInfo.expectedReward24H,
+          dashboardExampleHashrate
         )
       )
     }
@@ -39,8 +43,12 @@ export const Dashboard: React.FC = () => {
 
   return (
     <>
-      <Header isLoading={isAppLoading}  currentEthRate={currentEthRate}/>  
-      <div className="rounded-2xl pb-16 pt-10 px-8 bg-gray-700 inline-block">
+      <Header
+        isLoading={isAppLoading}
+        currentEthRate={currentEthRate}
+        onClickLastUpdateLabel={fetchData}
+      />
+      <div className="rounded-2xl pb-16 pt-10 px-8 bg-gray-700 inline-block transition hover:opacity-90">
         <div className="flex items-center mb-6 opacity-50 select-none">
           <EthereumSVG />
           Ethereum

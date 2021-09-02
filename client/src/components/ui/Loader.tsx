@@ -1,10 +1,18 @@
 import React from 'react'
 
-export const Loader: React.FC = () => {
+interface LoaderProps {
+  micro?: boolean
+}
+
+export const Loader: React.FC<LoaderProps> = ({ micro }) => {
   return (
     <div className="flex items-center p-2">
       <svg
-        className="animate-spin mr-2 h-7 w-7 text-white"
+        className={
+          micro
+            ? 'animate-spin mr-2 h-4 w-4 text-white'
+            : 'animate-spin mr-2 h-7 w-7 text-white'
+        }
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"

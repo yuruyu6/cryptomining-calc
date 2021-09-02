@@ -7,9 +7,9 @@ export const getCurrentEthRate = async () => {
   return data
 }
 
-export const getEthEarningsInfo = async (limit?: number) => {
+export const getEthEarningsInfo = async (limit: number = 1) => {
   const { data } = await axios.get(`/${limit}`)
-  if (!limit) {
+  if (limit === 1) {
     return data[0]
   }
   return data
