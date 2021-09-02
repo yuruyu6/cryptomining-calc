@@ -6,7 +6,7 @@ interface LoaderProps {
 
 export const Loader: React.FC<LoaderProps> = ({ micro }) => {
   return (
-    <div className="flex items-center p-2">
+    <div className="flex items-center justify-center px-2">
       <svg
         className={
           micro

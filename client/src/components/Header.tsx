@@ -16,7 +16,7 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   return (
     <section className="flex items-center my-8 h-8">
-      <div className="flex space-x-2">
+      <div className="flex flex-col md:flex-row md:space-x-2 space-y-3 md:space-y-0">
         <div
           onClick={() => onClickLastUpdateLabel()}
           className="flex items-center text-gray-400 hover:underline cursor-pointer"
