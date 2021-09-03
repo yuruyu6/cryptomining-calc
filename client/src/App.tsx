@@ -1,12 +1,13 @@
 import React from 'react'
 import { Dashboard } from './components/Dashboard'
+import { RewardsHistoryTable } from './components/RewardsHistoryTable'
 
 export const App: React.FC = () => {
   return (
     <div className="bg-gray-800 min-h-screen">
-      <div className="md:container mx-auto p-4 relative top-8 md:top-20">              
+      <div className="md:container mx-auto p-4 top-8 md:top-20">
         <Dashboard />
-        
+        <RewardsHistoryTable />
       </div>
     </div>
   )

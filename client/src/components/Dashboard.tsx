@@ -9,7 +9,7 @@ import { Loader } from './ui/Loader'
 const DASHBOARD_EXAMPLE_HASHRATE: number = 100
 
 export const Dashboard: React.FC = () => {
-  const [isAppLoading, setIsAppLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
   const [currentEthRate, setCurrentEthRate] = useState<
     currentEthRate | undefined
   >()
@@ -17,10 +17,10 @@ export const Dashboard: React.FC = () => {
   const [calculatedEarning, setCalculatedEarning] = useState(0)
 
   const fetchData = async () => {
-    setIsAppLoading(true)
+    setIsLoading(true)
     setCurrentEthRate(await getCurrentEthRate())
     setEarningsInfo(await getEthEarningsInfo())
-    setIsAppLoading(false)
+    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -42,33 +42,61 @@ export const Dashboard: React.FC = () => {
   return (
     <>
       <Header
-        isLoading={isAppLoading}
+        isLoading={isLoading}
         currentEthRate={currentEthRate}
         onClickLastUpdateLabel={fetchData}
       />
-      <div className="rounded-2xl pb-8 md:pb-16 pt-6 md:pt-10 px-8 bg-gray-700 md:inline-block transition hover:opacity-90">
-        <div className="flex items-center mb-6 opacity-50 select-none">
-          <EthereumSVG />
-          Ethereum
-        </div>
-        <div className="text-4xl block md:flex items-center md:space-x-4">
-          <div className="text-center gap-4">
-            Daily earnings per
-            <div className="text-gray-300">
-              {DASHBOARD_EXAMPLE_HASHRATE} MH/s
+      <div className="block lg:flex space-x-0 lg:space-x-4 justify-around">
+        <div className="rounded-2xl pb-8 md:pb-16 pt-6 md:pt-10 px-8 my-4 lg:my-0 bg-gray-700 transition hover:opacity-90">
+          <div className="flex items-center mb-6 opacity-50 select-none">
+            <EthereumSVG />
+            Ethereum
+          </div>
+          <div className="text-4xl block md:flex items-center space-x-4">
+            <div className="text-center">
+              Daily earnings per
+              <div className="text-gray-300">
+                {DASHBOARD_EXAMPLE_HASHRATE} MH/s
+              </div>
+            </div>
+            <div className="mt-6 md:m-0 text-center">
+              {isLoading ? (
+                <Loader />
+              ) : (
+                <div>
+                  <div className="text-4xl md:text-7xl">${calculatedEarning.toFixed(2)}</div>
+                  <div className="text-base md:text-lg text-gray-300">
+                    {earningsInfo?.expectedReward24H.toFixed(5)} ETH
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-          <div className="mt-6 md:m-0 text-center">
-            {isAppLoading ? (
-              <Loader />
-            ) : (
-              <div>
-                <div className="text-4xl md:text-7xl">${calculatedEarning.toFixed(2)}</div>
-                <div className="text-base md:text-lg text-gray-300">
-                  {earningsInfo?.expectedReward24H.toFixed(5)} ETH
-                </div>
+        </div>
+        <div className="rounded-2xl pb-8 md:pb-16 pt-6 md:pt-10 px-8 bg-gray-700 transition hover:opacity-90">
+          <div className="flex items-center mb-6 opacity-50 select-none">
+            <EthereumSVG />
+            Ethereum
+          </div>
+          <div className="text-4xl block md:flex items-center md:space-x-4">
+            <div className="text-center gap-4">
+              Daily earnings per
+              <div className="text-gray-300">
+                {DASHBOARD_EXAMPLE_HASHRATE} MH/s
               </div>
-            )}
+            </div>
+            <div className="mt-6 md:m-0 text-center">
+              {isLoading ? (
+                <Loader />
+              ) : (
+                <div>
+                  <div className="text-4xl md:text-7xl">${calculatedEarning.toFixed(2)}</div>
+                  <div className="text-base md:text-lg text-gray-300">
+                    {earningsInfo?.expectedReward24H.toFixed(5)} ETH
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
