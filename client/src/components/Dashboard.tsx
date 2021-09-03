@@ -6,19 +6,17 @@ import { Header } from './Header'
 import { EthereumSVG } from './svgs/Ethereum'
 import { Loader } from './ui/Loader'
 
-const dashboardExampleHashrate: number = 100
+const DASHBOARD_EXAMPLE_HASHRATE: number = 100
 
 export const Dashboard: React.FC = () => {
   const [isAppLoading, setIsAppLoading] = useState(true)
   const [currentEthRate, setCurrentEthRate] = useState<
     currentEthRate | undefined
-  >(undefined)
-  const [earningsInfo, setEarningsInfo] = useState<earningsInfo | undefined>(
-    undefined
-  )
+  >()
+  const [earningsInfo, setEarningsInfo] = useState<earningsInfo | undefined>()
   const [calculatedEarning, setCalculatedEarning] = useState(0)
 
-  async function fetchData() {
+  const fetchData = async () => {
     setIsAppLoading(true)
     setCurrentEthRate(await getCurrentEthRate())
     setEarningsInfo(await getEthEarningsInfo())
@@ -35,7 +33,7 @@ export const Dashboard: React.FC = () => {
         calcCryptoEarnings(
           currentEthRate.ethUsdRate,
           earningsInfo.expectedReward24H,
-          dashboardExampleHashrate
+          DASHBOARD_EXAMPLE_HASHRATE
         )
       )
     }
@@ -56,13 +54,20 @@ export const Dashboard: React.FC = () => {
         <div className="text-4xl block md:flex items-center md:space-x-4">
           <div className="text-center gap-4">
             Daily earnings per
-            <div className="text-gray-300">100 MH/s</div>
+            <div className="text-gray-300">
+              {DASHBOARD_EXAMPLE_HASHRATE} MH/s
+            </div>
           </div>
           <div className="mt-6 md:m-0 text-center">
             {isAppLoading ? (
               <Loader />
             ) : (
-              <div className="text-7xl">${calculatedEarning.toFixed(2)}</div>
+              <div>
+                <div className="text-4xl md:text-7xl">${calculatedEarning.toFixed(2)}</div>
+                <div className="text-base md:text-lg text-gray-300">
+                  {earningsInfo?.expectedReward24H.toFixed(5)} ETH
+                </div>
+              </div>
             )}
           </div>
         </div>
