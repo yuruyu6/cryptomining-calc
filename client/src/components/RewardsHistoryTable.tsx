@@ -110,11 +110,7 @@ export const RewardsHistoryTable: React.FC = () => {
                     <Transition.Child
                       as="tr"
                       key={reward.timestamp}
-                      className={
-                        index % 2
-                          ? 'bg-gray-700 hover:bg-gray-600 transition-colors'
-                          : 'bg-gray-800 hover:bg-gray-600 transition-colors'
-                      }
+                      className='bg-gray-700 hover:bg-gray-600 transition-colors odd:bg-gray-800'
                       enter="transition-opacity ease-linear duration-150"
                       enterFrom="opacity-0"
                       enterTo="opacity-100"
