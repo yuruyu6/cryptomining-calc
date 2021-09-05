@@ -6,7 +6,7 @@ import { currentEthRate } from '../types'
 interface HeaderProps {
   isLoading: boolean
   currentEthRate: currentEthRate | undefined
-  onClickLastUpdateLabel: any
+  onClickLastUpdateLabel: () => void
 }
 
 export const Header: React.FC<HeaderProps> = ({
