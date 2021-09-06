@@ -15,6 +15,22 @@
   footer {
     @apply text-white;
   }
+
+  input {
+    @apply bg-gray-700 focus:outline-none border-b-2 border-gray-600;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
   /* devanagari */
   @font-face {
     font-family: 'Poppins';
