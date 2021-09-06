@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { currentEthRate, earningsInfo } from '../types'
 import { getCurrentEthRate, getEthEarningsInfo } from '../utils/API'
 import { calcCryptoEarnings } from '../utils/calculation'
+import { AddRecordForm } from './AddRecordForm'
 import { Header } from './Header'
 import { EthereumSVG } from './svgs/Ethereum'
 import { Hint } from './ui/Hint'
@@ -79,6 +80,7 @@ export const Dashboard: React.FC = () => {
             </div>
           </div>
         </div>
+        <AddRecordForm />
       </div>
     </>
   )
