@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { saveUserInput } from '../utils/localStorage'
+import { userEarningInfoInput } from '../types'
 
 interface AddRecordFormProps {
-  onClickChangeViewButton: () => void
+  changeView: () => void
+  onAddNewRecord: (record: userEarningInfoInput) => void
 }
 
 interface FormValues {
@@ -12,13 +13,18 @@ interface FormValues {
 }
 
 export const AddRecordForm: React.FC<AddRecordFormProps> = ({
-  onClickChangeViewButton,
+  changeView,
+  onAddNewRecord,
 }) => {
-  const { register, handleSubmit, watch, setValue, getValues } =
+  const { register, handleSubmit, watch, setValue, setFocus, getValues } =
     useForm<FormValues>({
       mode: 'onSubmit',
     })
   const watchAllFields = watch()
+
+  useEffect(() => {
+    setFocus('name')
+  }, [setFocus])
 
   useEffect(() => {
     if (getValues('hashrate') < 1) {
@@ -29,16 +35,16 @@ export const AddRecordForm: React.FC<AddRecordFormProps> = ({
     }
   }, [getValues, setValue, watchAllFields])
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    saveUserInput(data)
-    onClickChangeViewButton()
+  const onSubmit: SubmitHandler<FormValues> = (data: userEarningInfoInput) => {
+    onAddNewRecord(data)
+    changeView()
   }
 
   return (
     <div>
       <button
         className="cursor-pointer text-lg flex items-center opacity-50 transition-opacity hover:opacity-75"
-        onClick={() => onClickChangeViewButton()}
+        onClick={() => changeView()}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -54,46 +60,47 @@ export const AddRecordForm: React.FC<AddRecordFormProps> = ({
         </svg>
         Back
       </button>
-      <div className="flex">
-        <input
-          className="flex-grow my-3 py-2"
-          {...register('name')}
-          type="text"
-          placeholder="Name"
-        />
-      </div>
-      <div className="flex relative items-center">
-        <input
-          className="flex-grow mb-3 py-2"
-          {...register('hashrate')}
-          type="number"
-          defaultValue="100"
-          placeholder="Hashrate"
-        />
-        <span className="absolute top-2 right-0">MH/s</span>
-      </div>
-      <br />
-      <div className="flex justify-end">
-        <button
-          className="opacity-50 transition-opacity hover:opacity-75"
-          onClick={handleSubmit(onSubmit)}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-10 w-10"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="flex">
+          <input
+            className="flex-grow my-3 py-2"
+            {...register('name')}
+            type="text"
+            placeholder="Name"
+          />
+        </div>
+        <div className="flex relative items-center">
+          <input
+            className="flex-grow mb-3 py-2"
+            {...register('hashrate')}
+            type="number"
+            defaultValue="100"
+            placeholder="Hashrate"
+          />
+          <span className="absolute top-2 right-0">MH/s</span>
+        </div>
+        <div className="flex justify-end">
+          <button
+            className="opacity-50 transition-opacity hover:opacity-75"
+            onClick={handleSubmit(onSubmit)}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-        </button>
-      </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-10 w-10"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.3}
+                d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </button>
+        </div>
+      </form>
     </div>
   )
 }

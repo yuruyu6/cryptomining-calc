@@ -3,12 +3,9 @@ import { currentEthRate, earningsInfo } from '../types'
 import { getCurrentEthRate, getEthEarningsInfo } from '../utils/API'
 import { calcCryptoEarnings } from '../utils/calculation'
 import { Header } from './Header'
-import { UserStatsDashboard } from './UserStatsDashboard'
-import { EthereumSVG } from './svgs/Ethereum'
-import { Hint } from './ui/Hint'
-import { Loader } from './ui/Loader'
-
-const DASHBOARD_EXAMPLE_HASHRATE: number = 100
+import { UserStatsDashboard } from './dashboardBlocks/UserStatsDashboardBlock'
+import { StatsDashboard } from './dashboardBlocks/StatsDashboardBlock'
+import { DASHBOARD_EXAMPLE_HASHRATE } from '../utils/constants'
 
 export const Dashboard: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true)
@@ -48,38 +45,12 @@ export const Dashboard: React.FC = () => {
         currentEthRate={currentEthRate}
         onClickLastUpdateLabel={fetchData}
       />
-      <div className="block lg:flex space-x-0 lg:space-x-4 space-y-6 lg:space-y-0 justify-center">
-        <div className="rounded-2xl pb-8 md:pb-16 pt-6 md:pt-10 px-8 bg-gray-700 transition hover:opacity-90">
-          <div className="flex justify-between items-start">
-            <div className="flex items-center mb-6 opacity-50 select-none">
-              <EthereumSVG />
-              Ethereum
-            </div>
-            <Hint hintText="Information provided by HiveOn Pool" />
-          </div>
-          <div className="text-4xl block md:flex items-center md:space-x-4">
-            <div className="text-center gap-4">
-              Daily earnings per
-              <div className="text-gray-300">
-                {DASHBOARD_EXAMPLE_HASHRATE} MH/s
-              </div>
-            </div>
-            <div className="mt-6 md:m-0 text-center">
-              {isLoading ? (
-                <Loader />
-              ) : (
-                <div>
-                  <div className="text-4xl md:text-7xl">
-                    ${calculatedEarning.toFixed(2)}
-                  </div>
-                  <div className="text-base md:text-lg text-gray-300">
-                    {earningsInfo?.expectedReward24H.toFixed(5)} ETH
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
+      <div className="block lg:flex max-w-7xl space-x-0 lg:space-x-6 space-y-6 lg:space-y-0 justify-around mx-auto">
+        <StatsDashboard
+          isLoading={isLoading}
+          calculatedEarning={calculatedEarning}
+          earningsInfo={earningsInfo}
+        />
         <UserStatsDashboard />
       </div>
     </>

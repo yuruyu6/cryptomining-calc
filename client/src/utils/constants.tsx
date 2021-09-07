@@ -1,0 +1,1 @@
+export const DASHBOARD_EXAMPLE_HASHRATE: number = 100
