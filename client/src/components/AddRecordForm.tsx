@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { saveUserInput } from '../utils/localStorage'
 
 interface AddRecordFormProps {
   onClickChangeViewButton: () => void
@@ -28,7 +29,10 @@ export const AddRecordForm: React.FC<AddRecordFormProps> = ({
     }
   }, [getValues, setValue, watchAllFields])
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data)
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    saveUserInput(data)
+    onClickChangeViewButton()
+  }
 
   return (
     <div>

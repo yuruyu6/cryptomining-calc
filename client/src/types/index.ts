@@ -9,3 +9,13 @@ export interface earningsInfo {
   meanExpectedReward24H: number
   exchangeRate: number
 }
+
+export interface userEarningInfoInput {
+  name: string
+  hashrate: number
+}
+
+export interface userEarningInfo extends userEarningInfoInput {
+  uuid: string
+  quantity: number
+}
