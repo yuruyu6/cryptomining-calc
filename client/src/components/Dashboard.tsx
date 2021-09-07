@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { currentEthRate, earningsInfo } from '../types'
 import { getCurrentEthRate, getEthEarningsInfo } from '../utils/API'
 import { calcCryptoEarnings } from '../utils/calculation'
-import { AddRecordForm } from './AddRecordForm'
 import { Header } from './Header'
+import { UserStatsDashboard as UserStatsDashboard } from './UserStatsDashboard'
 import { EthereumSVG } from './svgs/Ethereum'
 import { Hint } from './ui/Hint'
 import { Loader } from './ui/Loader'
@@ -48,7 +48,7 @@ export const Dashboard: React.FC = () => {
         currentEthRate={currentEthRate}
         onClickLastUpdateLabel={fetchData}
       />
-      <div className="block lg:flex space-x-0 lg:space-x-4 justify-center">
+      <div className="block lg:flex space-x-0 lg:space-x-4 space-y-6 lg:space-y-0 justify-center">
         <div className="rounded-2xl pb-8 md:pb-16 pt-6 md:pt-10 px-8 bg-gray-700 transition hover:opacity-90">
           <div className="flex justify-between items-start">
             <div className="flex items-center mb-6 opacity-50 select-none">
@@ -80,7 +80,7 @@ export const Dashboard: React.FC = () => {
             </div>
           </div>
         </div>
-        <AddRecordForm />
+        <UserStatsDashboard />
       </div>
     </>
   )
