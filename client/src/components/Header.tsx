@@ -1,19 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import dayjs from 'dayjs'
 import { Loader } from './ui/Loader'
-import { currentEthRate } from '../types'
+import { DashboardContext } from './Dashboard'
 
 interface HeaderProps {
-  isLoading: boolean
-  currentEthRate: currentEthRate | undefined
   onClickLastUpdateLabel: () => void
 }
 
-export const Header: React.FC<HeaderProps> = ({
-  isLoading,
-  currentEthRate,
-  onClickLastUpdateLabel,
-}) => {
+export const Header: React.FC<HeaderProps> = ({ onClickLastUpdateLabel }) => {
+  const { isLoading, currentEthRate } = useContext(DashboardContext)
+
   return (
     <section className="flex items-center my-8 h-8">
       <div className="flex flex-col md:flex-row md:space-x-2 space-y-3 md:space-y-0">

@@ -1,4 +1,4 @@
-import { currentEthRate, userEarningInfo } from '../types'
+import { userEarningInfo } from '../types'
 
 export const calcCryptoEarning = (
   currentEthRate: number,

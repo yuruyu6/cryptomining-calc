@@ -1,6 +1,5 @@
 import React from 'react'
 import { Dashboard } from './components/Dashboard'
-import { UserStatsDashboard } from './components/dashboardBlocks/UserStatsDashboardBlock'
 import { RewardsHistoryTable } from './components/RewardsHistoryTable'
 
 export const App: React.FC = () => {

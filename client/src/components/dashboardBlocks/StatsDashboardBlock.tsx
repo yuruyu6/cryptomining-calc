@@ -1,21 +1,14 @@
-import React from 'react'
-import { earningsInfo } from '../../types'
+import React, { useContext } from 'react'
 import { DASHBOARD_EXAMPLE_HASHRATE } from '../../utils/constants'
+import { DashboardContext } from '../Dashboard'
 import { EthereumSVG } from '../svgs/Ethereum'
 import { Hint } from '../ui/Hint'
 import { Loader } from '../ui/Loader'
 
-interface StatsDashboardProps {
-  isLoading: boolean
-  calculatedEarning: number
-  earningsInfo: earningsInfo | undefined
-}
+export const StatsDashboard: React.FC = () => {
+  const { isLoading, calculatedEarning, earningsInfo } =
+    useContext(DashboardContext)
 
-export const StatsDashboard: React.FC<StatsDashboardProps> = ({
-  isLoading,
-  calculatedEarning,
-  earningsInfo,
-}) => {
   return (
     <div className="flex-1 rounded-2xl pb-8 md:pb-16 pt-6 md:pt-10 px-8 bg-gray-700 transition hover:opacity-90">
       <div className="flex justify-between items-start">
