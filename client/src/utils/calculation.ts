@@ -1,9 +1,28 @@
-export const calcCryptoEarnings = (
+import { currentEthRate, userEarningInfo } from '../types'
+
+export const calcCryptoEarning = (
   currentEthRate: number,
   reward24H: number,
   hashrate: number
 ) => {
   return (currentEthRate / 100) * reward24H * hashrate
+}
+
+export const calcArrayOfCryptoEarnings = (
+  savedData: userEarningInfo[],
+  currentEthRate: number,
+  reward24H: number
+) => {
+  const summedHashrate = savedData.reduce(
+    (acc, data) => acc + +data.hashrate,
+    0
+  )
+  return {
+    elements: savedData.reduce((acc, data) => acc + +data.quantity, 0),
+    hashrate: summedHashrate,
+    earningsEth: (reward24H / 100) * summedHashrate,
+    earningsUsdt: calcCryptoEarning(currentEthRate, reward24H, summedHashrate),
+  }
 }
 
 /* eslint-disable no-mixed-operators */

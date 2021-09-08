@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { currentEthRate, earningsInfo } from '../types'
 import { getCurrentEthRate, getEthEarningsInfo } from '../utils/API'
-import { calcCryptoEarnings } from '../utils/calculation'
+import { calcCryptoEarning } from '../utils/calculation'
 import { Header } from './Header'
 import { UserStatsDashboard } from './dashboardBlocks/UserStatsDashboardBlock'
 import { StatsDashboard } from './dashboardBlocks/StatsDashboardBlock'
@@ -29,7 +29,7 @@ export const Dashboard: React.FC = () => {
   useEffect(() => {
     if (currentEthRate && earningsInfo) {
       setCalculatedEarning(
-        calcCryptoEarnings(
+        calcCryptoEarning(
           currentEthRate.ethUsdRate,
           earningsInfo.expectedReward24H,
           DASHBOARD_EXAMPLE_HASHRATE
@@ -51,7 +51,8 @@ export const Dashboard: React.FC = () => {
           calculatedEarning={calculatedEarning}
           earningsInfo={earningsInfo}
         />
-        <UserStatsDashboard />
+        <UserStatsDashboard currentEthRate={currentEthRate} earningsInfo={earningsInfo} />
+        
       </div>
     </>
   )
