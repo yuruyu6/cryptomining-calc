@@ -7,6 +7,7 @@ const Cron = require('fastify-cron')
 const Mysql = require('fastify-mysql')
 const Axios = require('fastify-axios')
 const Sensible = require('fastify-sensible')
+const Static = require('fastify-static')
 
 module.exports = async function (fastify, opts) {
   fastify.register(Mysql, {
@@ -23,6 +24,12 @@ module.exports = async function (fastify, opts) {
   fastify.register(AutoLoad, {
     dir: path.join(__dirname, 'routes'),
     options: Object.assign({ prefix: '/api' }, opts),
+  })
+  fastify.register(Static, {
+    root: path.join(__dirname, './client', 'build'),
+  })
+  fastify.setNotFoundHandler((_, res) => {
+    res.sendFile('index.html')
   })
 
   fastify.register(Cron, {
