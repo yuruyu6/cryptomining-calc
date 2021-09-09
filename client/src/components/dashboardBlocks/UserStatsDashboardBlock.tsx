@@ -12,8 +12,7 @@ import { DashboardContext } from '../Dashboard'
 import { Loader } from '../ui/Loader'
 
 export const UserStatsDashboard = React.memo(() => {
-  const { isLoading, currentEthRate, earningsInfo } =
-    useContext(DashboardContext)
+  const { dashboardState } = useContext(DashboardContext)
   const [isFormActive, setIsFormActive] = useState(false)
   const [userData, setUserData] = useLocalStorage('crypto', [])
 
@@ -35,11 +34,11 @@ export const UserStatsDashboard = React.memo(() => {
   }
 
   let calculatedEarnings
-  if (currentEthRate && earningsInfo) {
+  if (dashboardState.currentEthRate && dashboardState.earningsInfo) {
     calculatedEarnings = calcArrayOfCryptoEarnings(
       userData,
-      currentEthRate.ethUsdRate,
-      earningsInfo?.expectedReward24H
+      dashboardState.currentEthRate.ethUsdRate,
+      dashboardState.earningsInfo?.expectedReward24H
     )
   }
 
@@ -84,7 +83,7 @@ export const UserStatsDashboard = React.memo(() => {
                 Add
               </button>
               <p className="text-center text-4xl">Your stats</p>
-              {isLoading ? (
+              {dashboardState.isLoading ? (
                 <Loader />
               ) : (
                 calculatedEarnings && (

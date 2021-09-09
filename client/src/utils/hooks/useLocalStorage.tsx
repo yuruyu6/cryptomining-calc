@@ -16,7 +16,7 @@ export function useLocalStorage<T>(
     }
   })
 
-  const setValue: SetValue<T> = (value: any): void => {
+  const setValue: SetValue<T> = (value): void => {
     try {
       const valueToStore =
         value instanceof Function ? value(storedValue) : value

@@ -6,8 +6,7 @@ import { Hint } from '../ui/Hint'
 import { Loader } from '../ui/Loader'
 
 export const StatsDashboard: React.FC = () => {
-  const { isLoading, calculatedEarning, earningsInfo } =
-    useContext(DashboardContext)
+  const { dashboardState } = useContext(DashboardContext)
 
   return (
     <div className="flex-1 rounded-2xl pb-8 md:pb-16 pt-6 md:pt-10 px-8 bg-gray-700 transition hover:opacity-90">
@@ -24,15 +23,15 @@ export const StatsDashboard: React.FC = () => {
           <div className="text-gray-300">{DASHBOARD_EXAMPLE_HASHRATE} MH/s</div>
         </div>
         <div className="mt-6 md:m-0 text-center">
-          {isLoading ? (
+          {dashboardState.isLoading ? (
             <Loader />
           ) : (
             <div>
               <div className="text-4xl md:text-7xl">
-                ${calculatedEarning.toFixed(2)}
+                ${dashboardState.calculatedEarning.toFixed(2)}
               </div>
               <div className="text-base md:text-lg text-gray-300">
-                {earningsInfo?.expectedReward24H.toFixed(5)} ETH
+                {dashboardState.earningsInfo?.expectedReward24H.toFixed(5)} ETH
               </div>
             </div>
           )}

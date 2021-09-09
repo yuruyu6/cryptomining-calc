@@ -8,7 +8,7 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ onClickLastUpdateLabel }) => {
-  const { isLoading, currentEthRate } = useContext(DashboardContext)
+  const { dashboardState } = useContext(DashboardContext)
 
   return (
     <section className="flex items-center my-8 h-8">
@@ -32,7 +32,7 @@ export const Header: React.FC<HeaderProps> = ({ onClickLastUpdateLabel }) => {
             />
           </svg>
           Last update:
-          {isLoading ? (
+          {dashboardState.isLoading ? (
             <Loader micro={true} />
           ) : (
             <span className="ml-1 text-white">{dayjs().format('HH:mm')}</span>
@@ -54,12 +54,13 @@ export const Header: React.FC<HeaderProps> = ({ onClickLastUpdateLabel }) => {
             />
           </svg>
           ETH/USDT Rate:
-          {isLoading ? (
+          {dashboardState.isLoading ? (
             <Loader micro={true} />
           ) : (
             <span className="ml-1 text-white">
               $
-              {(currentEthRate && currentEthRate.ethUsdRate.toFixed(2)) ??
+              {(dashboardState.currentEthRate &&
+                dashboardState.currentEthRate.ethUsdRate.toFixed(2)) ??
                 'Fetch error'}
             </span>
           )}
