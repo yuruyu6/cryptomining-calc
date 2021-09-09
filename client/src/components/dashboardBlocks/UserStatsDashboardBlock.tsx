@@ -64,33 +64,38 @@ export const UserStatsDashboard = React.memo(() => {
         <div>
           {userData.length > 0 ? (
             <div className="">
-              <button
-                className="cursor-pointer text-lg flex items-center opacity-50 transition-opacity hover:opacity-75"
-                onClick={() => onClickChangeViewButton()}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 mr-2"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
+              <div className="flex justify-between">
+                <p className="text-center opacity-50 select-none">Your stats</p>
+                <button
+                  className="cursor-pointer text-lg flex items-center opacity-50 transition-opacity hover:opacity-75"
+                  onClick={() => onClickChangeViewButton()}
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Add
-              </button>
-              <p className="text-center text-4xl">Your stats</p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 mr-2"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  Add
+                </button>
+              </div>
+              
               {dashboardState.isLoading ? (
-                <Loader />
+                <div className="text-4xl mt-4">
+                  <Loader />
+                </div>
               ) : (
                 calculatedEarnings && (
-                  <div>
-                    <p>${calculatedEarnings.earningsUsdt.toFixed(2)}</p>
-                    <p>{calculatedEarnings.earningsEth.toFixed(5)} ETH</p>
-                    <p>Hashrate: {calculatedEarnings.hashrate} MH/s</p>
+                  <div className="text-center">
+                    <p className="text-gray-300 mb-2">{calculatedEarnings.hashrate} MH/s</p>
+                    <p className="text-4xl md:text-7xl">${calculatedEarnings.earningsUsdt.toFixed(2)}</p>
+                    <p className="text-base md:text-lg text-gray-300">{calculatedEarnings.earningsEth.toFixed(5)} ETH</p>
                   </div>
                 )
               )}

@@ -17,7 +17,7 @@ export const StatsDashboard: React.FC = () => {
         </div>
         <Hint hintText="Information provided by HiveOn Pool" />
       </div>
-      <div className="text-4xl block md:flex items-center justify-center md:space-x-4">
+      <div className="text-3xl block md:flex items-center justify-center md:space-x-4">
         <div className="text-center gap-4">
           Daily earnings per
           <div className="text-gray-300">{DASHBOARD_EXAMPLE_HASHRATE} MH/s</div>

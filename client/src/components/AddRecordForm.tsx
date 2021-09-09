@@ -42,28 +42,30 @@ export const AddRecordForm: React.FC<AddRecordFormProps> = ({
 
   return (
     <div>
-      <button
-        className="cursor-pointer text-lg flex items-center opacity-50 transition-opacity hover:opacity-75"
-        onClick={() => changeView()}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-4 w-4 mr-2"
-          viewBox="0 0 20 20"
-          fill="currentColor"
+      <div className="flex justify-end">
+        <button
+          className="cursor-pointer text-lg flex items-center opacity-50 transition-opacity hover:opacity-75"
+          onClick={() => changeView()}
         >
-          <path
-            fillRule="evenodd"
-            d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
-            clipRule="evenodd"
-          />
-        </svg>
-        Back
-      </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-4 w-4 mr-2"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
+              clipRule="evenodd"
+            />
+          </svg>
+          Back
+        </button>
+      </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex">
           <input
-            className="flex-grow my-3 py-2"
+            className="flex-grow my-3 pb-2"
             {...register('name')}
             type="text"
             placeholder="Name"

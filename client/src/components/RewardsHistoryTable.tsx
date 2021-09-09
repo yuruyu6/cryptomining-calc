@@ -29,12 +29,12 @@ export const RewardsHistoryTable: React.FC = () => {
 
   return (
     <div>
-      <h1 className="flex justify-center items-center text-4xl font-bold mt-8">
+      <h1 className="flex justify-center items-center text-4xl font-bold mt-8 group cursor-pointer" onClick={() => setIsShowing(!isShowing)} role="button">
         Rewards History
         <div
-          className="text-gray-600 hover:text-gray-300 transition-colors cursor-pointer ml-2"
-          onClick={() => setIsShowing(!isShowing)}
-          role="button"
+          className="text-gray-600 group-hover:text-gray-300 transition-colors  ml-2"
+          
+          
         >
           {isShowing ? (
             <svg
