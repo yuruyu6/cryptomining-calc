@@ -43,7 +43,7 @@ export const UserStatsDashboard = React.memo(() => {
   }
 
   return (
-    <div className="flex-1 rounded-2xl text-xl pb-8 md:pb-4 pt-6 md:pt-10 px-8 bg-gray-700 transition hover:opacity-90">
+    <div className="flex-1 rounded-2xl text-xl pb-8 md:pb-12 lg:pb-4 pt-6 md:pt-10 px-8 bg-gray-700 transition hover:opacity-90">
       {isFormActive ? (
         <Transition
           show={isFormActive}
@@ -63,7 +63,7 @@ export const UserStatsDashboard = React.memo(() => {
       ) : (
         <div>
           {userData.length > 0 ? (
-            <div className="">
+            <div>
               <div className="flex justify-between">
                 <p className="text-center opacity-50 select-none">Your stats</p>
                 <button

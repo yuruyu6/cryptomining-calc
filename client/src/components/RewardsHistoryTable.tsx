@@ -29,13 +29,13 @@ export const RewardsHistoryTable: React.FC = () => {
 
   return (
     <div>
-      <h1 className="flex justify-center items-center text-4xl font-bold mt-8 group cursor-pointer" onClick={() => setIsShowing(!isShowing)} role="button">
+      <h1
+        className="flex justify-center items-center text-4xl font-bold mt-8 group cursor-pointer"
+        onClick={() => setIsShowing(!isShowing)}
+        role="button"
+      >
         Rewards History
-        <div
-          className="text-gray-600 group-hover:text-gray-300 transition-colors  ml-2"
-          
-          
-        >
+        <div className="text-gray-600 group-hover:text-gray-300 transition-colors ml-2">
           {isShowing ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +83,7 @@ export const RewardsHistoryTable: React.FC = () => {
           rewardsList && (
             <div>
               <table className="table-auto text-xs md:text-xl my-4 mx-auto overflow-x-auto">
-                <thead className="">
+                <thead>
                   <tr className=" bg-gray-800">
                     <th className="px-1 sm:px-2 md:px-12 py-2">
                       ETH/USDT Rate

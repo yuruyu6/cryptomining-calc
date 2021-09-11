@@ -22,8 +22,8 @@ export const Hint: React.FC<HintProps> = ({ hintText }) => {
           />
         </svg>
       </div>
-      <ReactTooltip  type="light" effect="solid">
-        <span className="text-gray-800 text-center">{ hintText }</span>
+      <ReactTooltip type="light" effect="solid">
+        <span className="text-gray-800 text-center">{hintText}</span>
       </ReactTooltip>
     </div>
   )
