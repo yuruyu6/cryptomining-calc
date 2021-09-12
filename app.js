@@ -25,12 +25,18 @@ module.exports = async function (fastify, opts) {
     dir: path.join(__dirname, 'routes'),
     options: Object.assign({ prefix: '/api' }, opts),
   })
-  fastify.register(Static, {
-    root: path.join(__dirname, './client', 'build'),
-  })
-  fastify.setNotFoundHandler((_, res) => {
-    res.sendFile('index.html')
-  })
+  if (process.env.SERVER_ONLY) {
+    fastify.setNotFoundHandler((_, res) => {
+      res.send('Hello World!')
+    })
+  } else {
+    fastify.register(Static, {
+      root: path.join(__dirname, './client', 'build'),
+    })
+    fastify.setNotFoundHandler((_, res) => {
+      res.sendFile('index.html')
+    })
+  }
 
   fastify.register(Cron, {
     jobs: [
