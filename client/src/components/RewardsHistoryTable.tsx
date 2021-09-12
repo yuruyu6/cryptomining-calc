@@ -30,7 +30,7 @@ export const RewardsHistoryTable: React.FC = () => {
   return (
     <div>
       <h1
-        className="flex justify-center items-center text-4xl font-bold mt-8 group cursor-pointer"
+        className="flex justify-center items-center text-4xl font-bold group cursor-pointer"
         onClick={() => setIsShowing(!isShowing)}
         role="button"
       >
