@@ -1,20 +1,17 @@
-import React, { useContext } from 'react'
 import { Transition } from '@headlessui/react'
-import { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { userEarningInfo, userEarningInfoInput } from '../../types'
 import {
   calcArrayOfCryptoEarnings,
-  generateUUID,
+  generateUUID
 } from '../../utils/calculation'
-import { useLocalStorage } from '../../utils/hooks/useLocalStorage'
 import { AddRecordForm } from '../AddRecordForm'
 import { DashboardContext } from '../Dashboard'
 import { Loader } from '../ui/Loader'
 
-export const UserStatsDashboard = React.memo(() => {
-  const { dashboardState } = useContext(DashboardContext)
+export const UserStatsDashboard: React.FC = () => {
+  const { dashboardState, userData, setUserData } = useContext(DashboardContext)
   const [isFormActive, setIsFormActive] = useState(false)
-  const [userData, setUserData] = useLocalStorage('crypto', [])
 
   const onClickChangeViewButton = () => {
     setIsFormActive(!isFormActive)
@@ -38,7 +35,7 @@ export const UserStatsDashboard = React.memo(() => {
     calculatedEarnings = calcArrayOfCryptoEarnings(
       userData,
       dashboardState.currentEthRate.ethUsdRate,
-      dashboardState.earningsInfo?.expectedReward24H
+      dashboardState.earningsInfo.expectedReward24H
     )
   }
 
@@ -65,7 +62,7 @@ export const UserStatsDashboard = React.memo(() => {
           {userData.length > 0 ? (
             <div>
               <div className="flex justify-between">
-                <p className="text-center opacity-50 select-none">Your stats</p>
+                <p className="text-center opacity-50 select-none">Summary</p>
                 <button
                   className="cursor-pointer text-lg flex items-center opacity-50 transition-opacity hover:opacity-75"
                   onClick={() => onClickChangeViewButton()}
@@ -85,7 +82,7 @@ export const UserStatsDashboard = React.memo(() => {
                   Add
                 </button>
               </div>
-              
+
               {dashboardState.isLoading ? (
                 <div className="text-4xl mt-4">
                   <Loader />
@@ -93,9 +90,15 @@ export const UserStatsDashboard = React.memo(() => {
               ) : (
                 calculatedEarnings && (
                   <div className="text-center">
-                    <p className="text-gray-300 mb-2">{calculatedEarnings.hashrate} MH/s</p>
-                    <p className="text-4xl md:text-7xl">${calculatedEarnings.earningsUsdt.toFixed(2)}</p>
-                    <p className="text-base md:text-lg text-gray-300">{calculatedEarnings.earningsEth.toFixed(5)} ETH</p>
+                    <p className="text-gray-300 mb-2">
+                      {calculatedEarnings.hashrate} MH/s
+                    </p>
+                    <p className="text-4xl md:text-7xl">
+                      ${calculatedEarnings.earningsUsdt.toFixed(2)}
+                    </p>
+                    <p className="text-base md:text-lg text-gray-300">
+                      {calculatedEarnings.earningsEth.toFixed(5)} ETH
+                    </p>
                   </div>
                 )
               )}
@@ -126,4 +129,4 @@ export const UserStatsDashboard = React.memo(() => {
       )}
     </div>
   )
-})
+}

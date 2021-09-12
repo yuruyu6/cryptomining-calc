@@ -67,6 +67,7 @@ export const RewardsHistoryTable: React.FC = () => {
           )}
         </div>
       </h1>
+      {isShowing && <p className="text-center text-gray-300">per 100 MH/s</p>}
       <Transition
         show={isShowing}
         appear={true}

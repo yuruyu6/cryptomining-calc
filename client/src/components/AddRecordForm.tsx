@@ -30,8 +30,8 @@ export const AddRecordForm: React.FC<AddRecordFormProps> = ({
     if (getValues('hashrate') < 1) {
       setValue('hashrate', 1)
     }
-    if (getValues('name').length > 20) {
-      setValue('name', getValues('name').slice(0, 20))
+    if (getValues('name').length > 17) {
+      setValue('name', getValues('name').slice(0, 17))
     }
   }, [getValues, setValue, watchAllFields])
 

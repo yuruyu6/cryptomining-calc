@@ -1,11 +1,13 @@
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext, useCallback, useEffect, useState } from 'react'
 import { currentEthRate, earningsInfo } from '../types'
 import { getCurrentEthRate, getEthEarningsInfo } from '../utils/API'
 import { calcCryptoEarning } from '../utils/calculation'
-import { Header } from './Header'
-import { UserStatsDashboard } from './dashboardBlocks/UserStatsDashboardBlock'
-import { StatsDashboard } from './dashboardBlocks/StatsDashboardBlock'
 import { DASHBOARD_EXAMPLE_HASHRATE } from '../utils/constants'
+import { useLocalStorage } from '../utils/hooks/useLocalStorage'
+import { StatsDashboard } from './dashboardBlocks/StatsDashboardBlock'
+import { UserStatsDashboard } from './dashboardBlocks/UserStatsDashboardBlock'
+import { Header } from './Header'
+import { UserEquipment } from './UserEquipment'
 
 interface DashboardState {
   isLoading: boolean
@@ -16,6 +18,8 @@ interface DashboardState {
 
 interface DashboardContextProps {
   dashboardState: any
+  userData: any
+  setUserData: any
 }
 
 export const DashboardContext = createContext<Partial<DashboardContextProps>>(
@@ -33,8 +37,9 @@ export const Dashboard: React.FC = () => {
   const [dashboardState, setDashboardState] = useState<DashboardState>(
     initialDashboardState
   )
+  const [userData, setUserData] = useLocalStorage('crypto', [])
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setDashboardState(initialDashboardState)
     const currentEthRate = await getCurrentEthRate()
     const earningsInfo = await getEthEarningsInfo()
@@ -48,19 +53,22 @@ export const Dashboard: React.FC = () => {
         DASHBOARD_EXAMPLE_HASHRATE
       ),
     })
-  }
+  }, [])
 
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [fetchData])
 
   return (
-    <DashboardContext.Provider value={{ dashboardState }}>
+    <DashboardContext.Provider
+      value={{ dashboardState, userData, setUserData }}
+    >
       <Header onClickLastUpdateLabel={fetchData} />
       <div className="block lg:flex max-w-7xl space-x-0 lg:space-x-6 space-y-6 lg:space-y-0 justify-around mx-auto">
         <StatsDashboard />
         <UserStatsDashboard />
       </div>
+      <UserEquipment />
     </DashboardContext.Provider>
   )
 }
