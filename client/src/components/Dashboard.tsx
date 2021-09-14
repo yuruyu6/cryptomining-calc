@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useEffect, useState } from 'react'
 import { currentEthRate, earningsInfo } from '../types'
-import { getCurrentEthRate, getEthEarningsInfo } from '../utils/API'
+import { getCurrentEthEarningsInfo, getCurrentEthRate } from '../utils/API'
 import { calcCryptoEarning } from '../utils/calculation'
 import { DASHBOARD_EXAMPLE_HASHRATE } from '../utils/constants'
 import { useLocalStorage } from '../utils/hooks/useLocalStorage'
@@ -42,7 +42,7 @@ export const Dashboard: React.FC = () => {
   const fetchData = useCallback(async () => {
     setDashboardState(initialDashboardState)
     const currentEthRate = await getCurrentEthRate()
-    const earningsInfo = await getEthEarningsInfo()
+    const earningsInfo = await getCurrentEthEarningsInfo()
     setDashboardState({
       isLoading: false,
       currentEthRate: currentEthRate,

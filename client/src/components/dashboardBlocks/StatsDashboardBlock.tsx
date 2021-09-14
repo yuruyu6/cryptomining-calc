@@ -31,7 +31,7 @@ export const StatsDashboard: React.FC = () => {
                 ${dashboardState.calculatedEarning.toFixed(2)}
               </div>
               <div className="text-base md:text-lg text-gray-300">
-                {dashboardState.earningsInfo?.expectedReward24H.toFixed(5)} ETH
+                {dashboardState.earningsInfo.expectedReward24H.toFixed(5)} ETH
               </div>
             </div>
           )}

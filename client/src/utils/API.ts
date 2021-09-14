@@ -14,3 +14,8 @@ export const getEthEarningsInfo = async (limit: number = 1) => {
   }
   return data
 }
+
+export const getCurrentEthEarningsInfo = async () => {
+  const { data } = await axios.get(`/ethEarnings`)
+  return data
+}

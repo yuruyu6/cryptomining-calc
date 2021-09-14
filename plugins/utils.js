@@ -45,4 +45,33 @@ module.exports = fp(async function (fastify, opts) {
       return memoryEthRate
     }
   })
+
+  fastify.decorate('getEthEarningsInfo', async () => {
+    const memoryEthRate = memoryStorage.get('ethEarningsInfo')
+    if (memoryEthRate === undefined) {
+      const { data, status } = await fastify.axios.get(
+        'https://hiveon.net/api/v1/stats/pool'
+      )
+      if (status === 200) {
+        const {
+          stats: { ETH },
+        } = data
+        const result = {
+          expectedReward24H: ETH.expectedReward24H,
+          meanExpectedReward24H: ETH.meanExpectedReward24H,
+          exchangeRate: ETH.exchangeRate,
+        }
+        memoryStorage.set('ethEarningsInfo', result)
+        console.log('fromServer');
+        return result
+      } else {
+        throw new Error(
+          'getEthEarningsInfo API function ERROR >>> Server Not Accessible'
+        )
+      }
+    } else {
+      console.log('cache');
+      return memoryEthRate
+    }
+  })
 })
