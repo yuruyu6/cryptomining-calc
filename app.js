@@ -3,6 +3,7 @@
 require('dotenv').config()
 const path = require('path')
 const AutoLoad = require('fastify-autoload')
+const Cors = require('fastify-cors')
 const Cron = require('fastify-cron')
 const Mysql = require('fastify-mysql')
 const Axios = require('fastify-axios')
@@ -10,6 +11,7 @@ const Sensible = require('fastify-sensible')
 const Static = require('fastify-static')
 
 module.exports = async function (fastify, opts) {
+  fastify.register(Cors, { origin: true })
   fastify.register(Mysql, {
     connectionString: `mysql://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_SCHEMA}`,
   })
