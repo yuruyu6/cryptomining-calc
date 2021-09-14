@@ -62,7 +62,6 @@ module.exports = fp(async function (fastify, opts) {
           exchangeRate: ETH.exchangeRate,
         }
         memoryStorage.set('ethEarningsInfo', result)
-        console.log('fromServer');
         return result
       } else {
         throw new Error(
@@ -70,7 +69,6 @@ module.exports = fp(async function (fastify, opts) {
         )
       }
     } else {
-      console.log('cache');
       return memoryEthRate
     }
   })

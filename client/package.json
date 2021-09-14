@@ -1,5 +1,6 @@
 {
-  "name": "client",
+  "name": "client",  
+  "homepage": "https://yuruyu6.github.io/cryptomining-calc",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3003",
