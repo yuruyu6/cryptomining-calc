@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
 import dayjs from 'dayjs'
-import { Loader } from './ui/Loader'
+import { Loader } from '../ui/Loader'
 import { DashboardContext } from './Dashboard'
-import { Export } from './svgs/Export'
-import { Import } from './svgs/Import'
+import { Export } from '../svgs/Export'
+import { Import } from '../svgs/Import'
 import ReactTooltip from 'react-tooltip'
+import { Transition } from '@headlessui/react'
 
 interface HeaderProps {
   onClickLastUpdateLabel: () => void
@@ -17,10 +18,10 @@ export const Header: React.FC<HeaderProps> = ({
   onClickImportButton,
   onClickExportButton,
 }) => {
-  const { dashboardState } = useContext(DashboardContext)
+  const { dashboardState, userData } = useContext(DashboardContext)
 
   return (
-    <section className="flex my-8 h-8 items-center justify-between">
+    <section className="flex mt-8 mb-12 h-8 items-center justify-between">
       <div className="flex flex-col md:flex-row md:space-x-2 space-y-3 md:space-y-0">
         <div
           onClick={() => onClickLastUpdateLabel()}
@@ -75,31 +76,42 @@ export const Header: React.FC<HeaderProps> = ({
           )}
         </div>
       </div>
-      <div className="flex space-x-2">
-        <button
-          className="cursor-pointer transition-colors text-gray-500 hover:text-gray-300 focus:outline-none"
-          data-tip
-          data-for="export-icon"
-          onClick={onClickExportButton}
-        >
-          <Export />
-          <ReactTooltip id="export-icon" type="light" effect="solid">
-            <span className="text-gray-800 text-center">Export</span>
-          </ReactTooltip>
-        </button>
 
-        <button
-          className="cursor-pointer transition-colors text-gray-500 hover:text-gray-300 focus:outline-none"
-          data-tip
-          data-for="import-icon"
-          onClick={onClickImportButton}
-        >
-          <Import />
-          <ReactTooltip id="import-icon" type="light" effect="solid">
-            <span className="text-gray-800 text-center">Recovery</span>
-          </ReactTooltip>
-        </button>
-      </div>
+      <Transition
+        show={userData.length > 0}
+        enter="transition-opacity duration-75"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+        leave="transition-opacity duration-150"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
+      >
+        <div className="flex space-x-2">
+          <button
+            className="cursor-pointer transition-colors text-gray-500 hover:text-gray-300 focus:outline-none"
+            data-tip
+            data-for="export-icon"
+            onClick={onClickExportButton}
+          >
+            <Export />
+            <ReactTooltip id="export-icon" type="light" effect="solid">
+              <span className="text-gray-800 text-center">Export</span>
+            </ReactTooltip>
+          </button>
+
+          <button
+            className="cursor-pointer transition-colors text-gray-500 hover:text-gray-300 focus:outline-none"
+            data-tip
+            data-for="import-icon"
+            onClick={onClickImportButton}
+          >
+            <Import />
+            <ReactTooltip id="import-icon" type="light" effect="solid">
+              <span className="text-gray-800 text-center">Recovery</span>
+            </ReactTooltip>
+          </button>
+        </div>
+      </Transition>
     </section>
   )
 }

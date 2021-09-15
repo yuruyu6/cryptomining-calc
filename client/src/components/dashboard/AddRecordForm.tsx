@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { userEarningInfoInput } from '../types'
+import { userEarningInfoInput } from '../../types'
 
 interface AddRecordFormProps {
   changeView: () => void
