@@ -63,17 +63,17 @@ export const AddRecordForm: React.FC<AddRecordFormProps> = ({
         </button>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex">
+        <div>
           <input
-            className="flex-grow my-3 pb-2"
+            className="w-full my-3 pb-2"
             {...register('name')}
             type="text"
             placeholder="Name"
           />
         </div>
-        <div className="flex relative items-center">
+        <div className="relative items-center">
           <input
-            className="flex-grow mb-3 py-2"
+            className="w-full mb-3 py-2"
             {...register('hashrate')}
             type="number"
             defaultValue="100"
