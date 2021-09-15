@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/cryptomining-calc/static/css/main.4136f7a9.chunk.css",
-    "main.js": "/cryptomining-calc/static/js/main.854211d9.chunk.js",
-    "main.js.map": "/cryptomining-calc/static/js/main.854211d9.chunk.js.map",
+    "main.js": "/cryptomining-calc/static/js/main.7aee6b80.chunk.js",
+    "main.js.map": "/cryptomining-calc/static/js/main.7aee6b80.chunk.js.map",
     "runtime-main.js": "/cryptomining-calc/static/js/runtime-main.85d488f5.js",
     "runtime-main.js.map": "/cryptomining-calc/static/js/runtime-main.85d488f5.js.map",
-    "static/js/2.66bb8c62.chunk.js": "/cryptomining-calc/static/js/2.66bb8c62.chunk.js",
-    "static/js/2.66bb8c62.chunk.js.map": "/cryptomining-calc/static/js/2.66bb8c62.chunk.js.map",
+    "static/js/2.f0a980ab.chunk.js": "/cryptomining-calc/static/js/2.f0a980ab.chunk.js",
+    "static/js/2.f0a980ab.chunk.js.map": "/cryptomining-calc/static/js/2.f0a980ab.chunk.js.map",
     "index.html": "/cryptomining-calc/index.html",
     "static/css/main.4136f7a9.chunk.css.map": "/cryptomining-calc/static/css/main.4136f7a9.chunk.css.map",
-    "static/js/2.66bb8c62.chunk.js.LICENSE.txt": "/cryptomining-calc/static/js/2.66bb8c62.chunk.js.LICENSE.txt"
+    "static/js/2.f0a980ab.chunk.js.LICENSE.txt": "/cryptomining-calc/static/js/2.f0a980ab.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.85d488f5.js",
-    "static/js/2.66bb8c62.chunk.js",
+    "static/js/2.f0a980ab.chunk.js",
     "static/css/main.4136f7a9.chunk.css",
-    "static/js/main.854211d9.chunk.js"
+    "static/js/main.7aee6b80.chunk.js"
   ]
 }
