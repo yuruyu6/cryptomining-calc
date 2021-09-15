@@ -8,7 +8,7 @@ interface HintProps {
 export const Hint: React.FC<HintProps> = ({ hintText }) => {
   return (
     <div>
-      <div className="cursor-pointer" data-tip>
+      <div className="cursor-pointer" data-tip data-for="hint">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5 opacity-50"
@@ -22,7 +22,7 @@ export const Hint: React.FC<HintProps> = ({ hintText }) => {
           />
         </svg>
       </div>
-      <ReactTooltip type="light" effect="solid">
+      <ReactTooltip id="hint" type="light" effect="solid">
         <span className="text-gray-800 text-center">{hintText}</span>
       </ReactTooltip>
     </div>

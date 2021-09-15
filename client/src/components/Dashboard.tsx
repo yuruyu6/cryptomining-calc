@@ -56,11 +56,11 @@ export const Dashboard: React.FC = () => {
   }, [])
 
   const onClickImportButton = () => {
-    
+    console.log('import')
   }
 
   const onClickExportButton = () => {
-
+    console.log('export')
   }
 
   useEffect(() => {
@@ -71,7 +71,11 @@ export const Dashboard: React.FC = () => {
     <DashboardContext.Provider
       value={{ dashboardState, userData, setUserData }}
     >
-      <Header onClickLastUpdateLabel={fetchData} />
+      <Header
+        onClickLastUpdateLabel={fetchData}
+        onClickImportButton={onClickImportButton}
+        onClickExportButton={onClickExportButton}
+      />
       <div className="block lg:flex max-w-7xl space-x-0 lg:space-x-6 space-y-6 lg:space-y-0 justify-around mx-auto">
         <StatsDashboard />
         <UserStatsDashboard />
