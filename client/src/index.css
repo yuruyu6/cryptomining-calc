@@ -21,7 +21,7 @@
   }
 
   .modal {
-    @apply fixed z-10 inset-0 overflow-y-auto;
+    @apply fixed z-50 inset-0 overflow-y-auto;
   }
 
   input::-webkit-outer-spin-button,

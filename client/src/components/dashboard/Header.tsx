@@ -77,41 +77,38 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </div>
 
-      <Transition
-        show={userData.length > 0}
-        enter="transition-opacity duration-75"
-        enterFrom="opacity-0"
-        enterTo="opacity-100"
-        leave="transition-opacity duration-150"
-        leaveFrom="opacity-100"
-        leaveTo="opacity-0"
-      >
-        <div className="flex space-x-2">
-          <button
-            className="cursor-pointer transition-colors text-gray-500 hover:text-gray-300 focus:outline-none"
-            data-tip
-            data-for="export-icon"
-            onClick={onClickExportButton}
-          >
-            <Export />
-            <ReactTooltip id="export-icon" type="light" effect="solid">
-              <span className="text-gray-800 text-center">Export</span>
-            </ReactTooltip>
-          </button>
-
-          <button
-            className="cursor-pointer transition-colors text-gray-500 hover:text-gray-300 focus:outline-none"
-            data-tip
-            data-for="import-icon"
-            onClick={onClickImportButton}
-          >
-            <Import />
-            <ReactTooltip id="import-icon" type="light" effect="solid">
-              <span className="text-gray-800 text-center">Recovery</span>
-            </ReactTooltip>
-          </button>
-        </div>
-      </Transition>
+      <div className="flex space-x-2">
+        <Transition
+          as="button"
+          className="transition-colors text-gray-500 hover:text-gray-300 focus:outline-none"
+          show={userData.length > 0}
+          enter="transition-opacity duration-75"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="transition-opacity duration-150"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+          data-tip
+          data-for="export-icon"
+          onClick={onClickExportButton}
+        >
+          <Export />
+          <ReactTooltip id="export-icon" type="light" effect="solid">
+            <span className="text-gray-800 text-center">Export</span>
+          </ReactTooltip>
+        </Transition>
+        <button
+          className="cursor-pointer transition-colors text-gray-500 hover:text-gray-300 focus:outline-none"
+          data-tip
+          data-for="import-icon"
+          onClick={onClickImportButton}
+        >
+          <Import />
+          <ReactTooltip id="import-icon" type="light" effect="solid">
+            <span className="text-gray-800 text-center">Import</span>
+          </ReactTooltip>
+        </button>
+      </div>
     </section>
   )
 }
