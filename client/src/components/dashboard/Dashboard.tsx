@@ -4,6 +4,7 @@ import { getCurrentEthEarningsInfo, getCurrentEthRate } from '../../utils/API'
 import { calcCryptoEarning } from '../../utils/calculation'
 import { DASHBOARD_EXAMPLE_HASHRATE } from '../../utils/constants'
 import { useLocalStorage } from '../../utils/hooks/useLocalStorage'
+import { Modal } from '../ui/Modal'
 import { StatsDashboard } from './dashboardBlocks/StatsDashboardBlock'
 import { UserStatsDashboard } from './dashboardBlocks/UserStatsDashboardBlock'
 import { Header } from './Header'
@@ -81,6 +82,7 @@ export const Dashboard: React.FC = () => {
         <UserStatsDashboard />
       </div>
       <UserEquipment />
+      <Modal isShowing={false}>test</Modal>
     </DashboardContext.Provider>
   )
 }
