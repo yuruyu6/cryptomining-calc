@@ -58,7 +58,10 @@ export const ImportBlock: React.FC<ImportBlockProps> = ({
         {errors?.exportPhrase && (
           <p className="text-red-600">{errors.exportPhrase.message}</p>
         )}
-        <button className="w-full rounded text-center mt-2 py-2 px-4 text-black hover:bg-gray-600 hover:text-white transition-colors">
+        <button
+          className="w-full rounded text-center mt-2 py-2 px-4 text-black hover:bg-gray-600 hover:text-white transition-colors"
+          aria-label="Import data"
+        >
           Import
         </button>
       </form>

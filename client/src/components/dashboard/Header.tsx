@@ -81,6 +81,7 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="flex space-x-2">
         <Transition
           as="button"
+          aria-label="Export data"
           className="transition-colors text-gray-500 hover:text-gray-300 focus:outline-none"
           show={userData.length > 0}
           enter="transition-opacity duration-75"
@@ -100,6 +101,7 @@ export const Header: React.FC<HeaderProps> = ({
         </Transition>
         <button
           className="cursor-pointer transition-colors text-gray-500 hover:text-gray-300 focus:outline-none"
+          aria-label="Import data"
           data-tip
           data-for="import-icon"
           onClick={onClickImportButton}

@@ -50,7 +50,10 @@ export const UserEquipment: React.FC = () => {
                   <div className="">
                     <div className="flex justify-between items-center opacity-50 truncate">
                       {device.name} - {device.hashrate} MH/s
-                      <button onClick={() => onClickDeleteButton(device.uuid)}>
+                      <button
+                        onClick={() => onClickDeleteButton(device.uuid)}
+                        aria-label="Delete record"
+                      >
                         <Trashcan />
                       </button>
                     </div>

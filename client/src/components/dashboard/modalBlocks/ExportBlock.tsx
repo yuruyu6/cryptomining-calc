@@ -44,6 +44,7 @@ export const ExportBlock: React.FC<ExportBlockProps> = ({
         <button
           className="absolute z-10 top-2 right-2 text-gray-500 hover:text-black transition-colors"
           onClick={onClickModalCopyButton}
+          aria-label="Copy to clipboard"
           title="Copy"
         >
           <Copy />
