@@ -19,6 +19,7 @@ export const Header: React.FC<HeaderProps> = ({
   onClickExportButton,
 }) => {
   const { dashboardState, userData } = useContext(DashboardContext)
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   return (
     <section className="flex mt-8 mb-12 h-8 items-center justify-between">
@@ -93,7 +94,7 @@ export const Header: React.FC<HeaderProps> = ({
           onClick={onClickExportButton}
         >
           <Export />
-          <ReactTooltip id="export-icon" type="light" effect="solid">
+          <ReactTooltip disable={isMobile} id="export-icon" type="light" effect="solid">
             <span className="text-gray-800 text-center">Export</span>
           </ReactTooltip>
         </Transition>
@@ -104,7 +105,7 @@ export const Header: React.FC<HeaderProps> = ({
           onClick={onClickImportButton}
         >
           <Import />
-          <ReactTooltip id="import-icon" type="light" effect="solid">
+          <ReactTooltip disable={isMobile} id="import-icon" type="light" effect="solid">
             <span className="text-gray-800 text-center">Import</span>
           </ReactTooltip>
         </button>
