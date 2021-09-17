@@ -2,7 +2,7 @@ import { Transition } from '@headlessui/react'
 import React, { useEffect } from 'react'
 
 interface ModalProps {
-  isShowing: any
+  isShowing: boolean
 }
 
 export const Modal: React.FC<ModalProps> = ({ children, isShowing }) => {

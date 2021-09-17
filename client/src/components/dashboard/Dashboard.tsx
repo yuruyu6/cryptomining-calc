@@ -1,21 +1,15 @@
-import React, {
-  createContext,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, { createContext, useCallback, useEffect, useState } from 'react'
 import { currentEthRate, earningsInfo } from '../../types'
 import { getCurrentEthEarningsInfo, getCurrentEthRate } from '../../utils/API'
 import { calcCryptoEarning } from '../../utils/calculation'
 import { DASHBOARD_EXAMPLE_HASHRATE } from '../../utils/constants'
 import { useLocalStorage } from '../../utils/hooks/useLocalStorage'
-import { Copy } from '../svgs/Copy'
-import { XMark } from '../svgs/XMark'
 import { Modal } from '../ui/Modal'
 import { StatsDashboard } from './dashboardBlocks/StatsDashboardBlock'
 import { UserStatsDashboard } from './dashboardBlocks/UserStatsDashboardBlock'
 import { Header } from './Header'
+import { ExportBlock } from './modalBlocks/ExportBlock'
+import { ImportBlock } from './modalBlocks/ImportBlock'
 import { UserEquipment } from './UserEquipment'
 
 interface DashboardState {
@@ -76,7 +70,7 @@ export const Dashboard: React.FC = () => {
   }, [])
 
   const onClickImportButton = () => {
-    console.log('onClickImportButton')
+    setModalState({ isShowing: true, mode: 'import' })
   }
 
   const onClickExportButton = () => {
@@ -85,15 +79,6 @@ export const Dashboard: React.FC = () => {
 
   const onClickCloseModalButton = () => {
     setModalState({ isShowing: false, mode: modalState.mode })
-  }
-
-  const importInput = useRef<HTMLInputElement>(null)
-
-  const onClickCopyButton = () => {
-    if (importInput) {
-      navigator.clipboard.writeText(importInput.current?.value || '[]')
-      setModalState({ isShowing: false, mode: modalState.mode })
-    }
   }
 
   useEffect(() => {
@@ -116,31 +101,10 @@ export const Dashboard: React.FC = () => {
       <UserEquipment />
       <Modal isShowing={modalState.isShowing}>
         {modalState.mode === 'export' && (
-          <div>
-            <div className="flex justify-end mb-2 text-gray-500 hover:text-black transition-colors">
-              <button onClick={() => onClickCloseModalButton()} title="Close">
-                <XMark />
-              </button>
-            </div>
-            <p className="text-black text-xl text-center my-2">Export data</p>
-            <p className="text-black text-sm text-center my-2">Click the button below to save your data and use import function on another device</p>
-            <div className="relative items-center">
-              <input
-                ref={importInput}
-                className="bg-white text-black w-full border rounded pr-10 py-2 pl-2"
-                type="text"
-                readOnly
-                defaultValue={JSON.stringify(userData)}
-              />
-              <button
-                className="absolute z-10 top-2 right-2 text-gray-500 hover:text-black transition-colors"
-                onClick={() => onClickCopyButton()}
-                title="Copy"
-              >
-                <Copy />
-              </button>
-            </div>
-          </div>
+          <ExportBlock onClickCloseModalButton={onClickCloseModalButton} />
+        )}
+        {modalState.mode === 'import' && (
+          <ImportBlock onClickCloseModalButton={onClickCloseModalButton} />
         )}
       </Modal>
     </DashboardContext.Provider>
