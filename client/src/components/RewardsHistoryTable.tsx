@@ -5,6 +5,7 @@ import { earningsInfo } from '../types'
 import { getEthEarningsInfo as getEarningsInfo } from '../utils/API'
 import { calcCryptoEarning } from '../utils/calculation'
 import { Loader } from './ui/Loader'
+import { MAX_ITEMS_IN_REWARDS_HISTORY_TABLE } from '../utils/constants'
 
 export const RewardsHistoryTable: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true)
@@ -22,7 +23,7 @@ export const RewardsHistoryTable: React.FC = () => {
   }, [fetchData])
 
   const onClickShowMoreButton = () => {
-    if (rewardsCount <= 99) {
+    if (rewardsCount <= MAX_ITEMS_IN_REWARDS_HISTORY_TABLE) {
       setRewardsCount(rewardsCount + 10)
     }
   }
@@ -135,21 +136,18 @@ export const RewardsHistoryTable: React.FC = () => {
                       </td>
                     </Transition.Child>
                   ))}
-                  {rewardsCount <= 99 && (
-                    <tr
-                      className="cursor-pointer hover:border hover:border-blue-900"
-                      onClick={() => onClickShowMoreButton()}
-                    >
-                      <td
-                        colSpan={4}
-                        className="text-center py-4 hover:bg-blue-900 transition-colors"
-                      >
-                        Show More
-                      </td>
-                    </tr>
-                  )}
                 </tbody>
               </table>
+              {rewardsCount <= MAX_ITEMS_IN_REWARDS_HISTORY_TABLE && (
+                <div className="flex justify-center">
+                  <button
+                    className="text-center rounded py-2 px-4 hover:bg-gray-600 transition-colors"
+                    onClick={() => onClickShowMoreButton()}
+                  >
+                    Show More
+                  </button>
+                </div>
+              )}
             </div>
           )
         )}

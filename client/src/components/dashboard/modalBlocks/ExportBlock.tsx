@@ -30,7 +30,7 @@ export const ExportBlock: React.FC<ExportBlockProps> = ({
       </div>
       <p className="text-black text-xl text-center my-2">Export data</p>
       <p className="text-black text-sm text-center my-2">
-        Click the button below to save your data and use import function on
+        Click the copy button below to save your data and use it to import to
         another device
       </p>
       <div className="relative items-center">

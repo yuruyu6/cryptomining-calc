@@ -1,1 +1,2 @@
 export const DASHBOARD_EXAMPLE_HASHRATE: number = 100
+export const MAX_ITEMS_IN_REWARDS_HISTORY_TABLE: number = 200
