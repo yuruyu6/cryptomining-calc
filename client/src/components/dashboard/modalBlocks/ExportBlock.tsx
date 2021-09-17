@@ -24,7 +24,7 @@ export const ExportBlock: React.FC<ExportBlockProps> = ({
   return (
     <div>
       <div className="flex justify-end mb-2 text-gray-500 hover:text-black transition-colors">
-        <button onClick={() => onClickCloseModalButton()} title="Close">
+        <button onClick={onClickCloseModalButton} title="Close">
           <XMark />
         </button>
       </div>
@@ -43,7 +43,7 @@ export const ExportBlock: React.FC<ExportBlockProps> = ({
         />
         <button
           className="absolute z-10 top-2 right-2 text-gray-500 hover:text-black transition-colors"
-          onClick={() => onClickModalCopyButton()}
+          onClick={onClickModalCopyButton}
           title="Copy"
         >
           <Copy />

@@ -1,19 +1,47 @@
-import React, { useRef } from 'react'
+import React, { useContext } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { userEarningInfo } from '../../../types'
 import { XMark } from '../../svgs/XMark'
+import { DashboardContext } from '../Dashboard'
 
 interface ImportBlockProps {
   onClickCloseModalButton: () => void
 }
 
+interface FormValues {
+  exportPhrase: string
+}
+
 export const ImportBlock: React.FC<ImportBlockProps> = ({
   onClickCloseModalButton,
 }) => {
-  const importInput = useRef<HTMLInputElement>(null)
+  const { setUserData } = useContext(DashboardContext)
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm<FormValues>({
+    mode: 'onSubmit',
+  })
+
+  const onSubmit: SubmitHandler<FormValues> = (formData) => {
+    try {
+      const parsedFormData: userEarningInfo = JSON.parse(formData.exportPhrase)
+      setUserData(parsedFormData)
+      onClickCloseModalButton()
+    } catch (error) {
+      setError('exportPhrase', {
+        type: 'manual',
+        message: 'Incorrect export phrase',
+      })
+    }
+  }
 
   return (
     <div>
       <div className="flex justify-end mb-2 text-gray-500 hover:text-black transition-colors">
-        <button onClick={() => onClickCloseModalButton()} title="Close">
+        <button onClick={onClickCloseModalButton} title="Close">
           <XMark />
         </button>
       </div>
@@ -21,13 +49,19 @@ export const ImportBlock: React.FC<ImportBlockProps> = ({
       <p className="text-black text-sm text-center my-2">
         Paste saved string into the text field below to import your data
       </p>
-      <div className="relative items-center">
+      <form className="items-center" onSubmit={handleSubmit(onSubmit)}>
         <input
-          ref={importInput}
           className="bg-white text-black w-full border rounded p-2"
           type="text"
+          {...register('exportPhrase')}
         />
-      </div>
+        {errors?.exportPhrase && (
+          <p className="text-red-600">{errors.exportPhrase.message}</p>
+        )}
+        <button className="w-full rounded text-center mt-2 py-2 px-4 text-black hover:bg-gray-600 hover:text-white transition-colors">
+          Import
+        </button>
+      </form>
     </div>
   )
 }
