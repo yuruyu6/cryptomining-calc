@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/cryptomining-calc/static/css/main.3fbe5d6b.chunk.css",
-    "main.js": "/cryptomining-calc/static/js/main.cea5a69d.chunk.js",
-    "main.js.map": "/cryptomining-calc/static/js/main.cea5a69d.chunk.js.map",
+    "main.js": "/cryptomining-calc/static/js/main.93cb9904.chunk.js",
+    "main.js.map": "/cryptomining-calc/static/js/main.93cb9904.chunk.js.map",
     "runtime-main.js": "/cryptomining-calc/static/js/runtime-main.85d488f5.js",
     "runtime-main.js.map": "/cryptomining-calc/static/js/runtime-main.85d488f5.js.map",
     "static/js/2.f6c4627b.chunk.js": "/cryptomining-calc/static/js/2.f6c4627b.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.85d488f5.js",
     "static/js/2.f6c4627b.chunk.js",
     "static/css/main.3fbe5d6b.chunk.css",
-    "static/js/main.cea5a69d.chunk.js"
+    "static/js/main.93cb9904.chunk.js"
   ]
 }
