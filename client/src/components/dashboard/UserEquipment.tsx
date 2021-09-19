@@ -3,7 +3,6 @@ import { userEarningInfo } from '../../types'
 import { calcCryptoEarning } from '../../utils/calculation'
 import { DashboardContext } from './Dashboard'
 import { Trashcan } from '../svgs/Trashcan'
-import { Loader } from '../ui/Loader'
 
 export const UserEquipment: React.FC = () => {
   const { dashboardState, userData, setUserData } = useContext(DashboardContext)
@@ -34,9 +33,7 @@ export const UserEquipment: React.FC = () => {
 
   return (
     <div className="mt-8 mb-6">
-      {dashboardState.isLoading ? (
-        <Loader />
-      ) : userData.length > 0 ? (
+      {!dashboardState.isLoading && userData.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 grid-flow-row gap-4 md:gap-6 ">
           {userData
             .sort((a: userEarningInfo, b: userEarningInfo) => {

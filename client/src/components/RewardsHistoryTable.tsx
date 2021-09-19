@@ -80,11 +80,13 @@ export const RewardsHistoryTable: React.FC = () => {
         leaveTo="opacity-0"
       >
         {isLoading ? (
-          <Loader />
+          <div className="text-2xl mt-6">
+            <Loader />
+          </div>
         ) : (
           rewardsList && (
             <div>
-              <table className="table-auto text-xs md:text-xl my-4 mx-auto overflow-x-auto">
+              <table className="table-auto text-xs md:text-xl w-full max-w-7xl my-4 mx-auto overflow-x-auto">
                 <thead>
                   <tr className=" bg-gray-800">
                     <th className="px-1 sm:px-2 md:px-12 py-2">

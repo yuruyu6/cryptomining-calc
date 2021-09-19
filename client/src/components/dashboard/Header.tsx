@@ -1,11 +1,10 @@
-import React, { useContext } from 'react'
+import { Transition } from '@headlessui/react'
 import dayjs from 'dayjs'
-import { Loader } from '../ui/Loader'
-import { DashboardContext } from './Dashboard'
+import React, { useContext } from 'react'
+import ReactTooltip from 'react-tooltip'
 import { Export } from '../svgs/Export'
 import { Import } from '../svgs/Import'
-import ReactTooltip from 'react-tooltip'
-import { Transition } from '@headlessui/react'
+import { DashboardContext } from './Dashboard'
 
 interface HeaderProps {
   onClickLastUpdateLabel: () => void
@@ -19,7 +18,7 @@ export const Header: React.FC<HeaderProps> = ({
   onClickExportButton,
 }) => {
   const { dashboardState, userData } = useContext(DashboardContext)
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
 
   return (
     <section className="flex mt-8 mb-12 h-8 items-center justify-between">
@@ -44,7 +43,7 @@ export const Header: React.FC<HeaderProps> = ({
           </svg>
           Last update:
           {dashboardState.isLoading ? (
-            <Loader micro={true} />
+            <div className="ml-1 bg-gray-500 rounded animate-pulse w-10 h-4"></div>
           ) : (
             <span className="ml-1 text-white">{dayjs().format('HH:mm')}</span>
           )}
@@ -66,7 +65,7 @@ export const Header: React.FC<HeaderProps> = ({
           </svg>
           ETH/USDT Rate:
           {dashboardState.isLoading ? (
-            <Loader micro={true} />
+            <div className="ml-1 bg-gray-500 rounded animate-pulse w-16 h-4"></div>
           ) : (
             <span className="ml-1 text-white">
               $
@@ -95,7 +94,12 @@ export const Header: React.FC<HeaderProps> = ({
           onClick={onClickExportButton}
         >
           <Export />
-          <ReactTooltip disable={isMobile} id="export-icon" type="light" effect="solid">
+          <ReactTooltip
+            disable={isMobile}
+            id="export-icon"
+            type="light"
+            effect="solid"
+          >
             <span className="text-gray-800 text-center">Export</span>
           </ReactTooltip>
         </Transition>
@@ -107,7 +111,12 @@ export const Header: React.FC<HeaderProps> = ({
           onClick={onClickImportButton}
         >
           <Import />
-          <ReactTooltip disable={isMobile} id="import-icon" type="light" effect="solid">
+          <ReactTooltip
+            disable={isMobile}
+            id="import-icon"
+            type="light"
+            effect="solid"
+          >
             <span className="text-gray-800 text-center">Import</span>
           </ReactTooltip>
         </button>

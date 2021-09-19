@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react'
 import { userEarningInfo, userEarningInfoInput } from '../../../types'
 import {
   calcArrayOfCryptoEarnings,
-  generateUUID
+  generateUUID,
 } from '../../../utils/calculation'
 import { AddRecordForm } from '../AddRecordForm'
 import { DashboardContext } from '../Dashboard'
@@ -84,7 +84,7 @@ export const UserStatsDashboard: React.FC = () => {
               </div>
 
               {dashboardState.isLoading ? (
-                <div className="text-4xl mt-4">
+                <div className="text-4xl my-4 md:mt-8">
                   <Loader />
                 </div>
               ) : (
