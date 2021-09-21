@@ -5,7 +5,6 @@ import ReactTooltip from 'react-tooltip'
 import { Export } from '../svgs/Export'
 import { Import } from '../svgs/Import'
 import { DashboardContext } from './Dashboard'
-import { StatsPeriodSwitch } from './StatsPeriodSwitch'
 
 interface HeaderProps {
   onClickLastUpdateLabel: () => void
@@ -77,7 +76,6 @@ export const Header: React.FC<HeaderProps> = ({
           )}
         </div>
       </div>
-                <StatsPeriodSwitch />
       <div className="flex space-x-2">
         <Transition
           as="button"

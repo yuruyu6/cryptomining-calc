@@ -3,11 +3,11 @@ import React, { useContext, useState } from 'react'
 import { userEarningInfo, userEarningInfoInput } from '../../../types'
 import {
   calcArrayOfCryptoEarnings,
-  generateUUID,
+  generateUUID
 } from '../../../utils/calculation'
+import { Loader } from '../../ui/Loader'
 import { AddRecordForm } from '../AddRecordForm'
 import { DashboardContext } from '../Dashboard'
-import { Loader } from '../../ui/Loader'
 
 export const UserStatsDashboard: React.FC = () => {
   const { dashboardState, userData, setUserData } = useContext(DashboardContext)
@@ -35,7 +35,8 @@ export const UserStatsDashboard: React.FC = () => {
     calculatedEarnings = calcArrayOfCryptoEarnings(
       userData,
       dashboardState.currentEthRate.ethUsdRate,
-      dashboardState.earningsInfo.expectedReward24H
+      dashboardState.earningsInfo.expectedReward24H,
+      dashboardState.period.value
     )
   }
 
@@ -91,7 +92,7 @@ export const UserStatsDashboard: React.FC = () => {
                 calculatedEarnings && (
                   <div className="text-center">
                     <p className="text-gray-300 mb-2">
-                      {calculatedEarnings.hashrate} MH/s
+                      {calculatedEarnings.hashrate.toFixed(2).replace(/\.00$/, '')} MH/s
                     </p>
                     <p className="text-4xl md:text-7xl">
                       ${calculatedEarnings.earningsUsdt.toFixed(2)}
