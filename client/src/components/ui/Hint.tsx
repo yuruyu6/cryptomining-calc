@@ -11,7 +11,7 @@ export const Hint: React.FC<HintProps> = ({ hintText }) => {
       <div className="cursor-pointer" data-tip data-for="hint">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 opacity-50"
+          className="h-5 w-5 opacity-50 transition-opacity hover:opacity-75"
           viewBox="0 0 20 20"
           fill="currentColor"
         >
