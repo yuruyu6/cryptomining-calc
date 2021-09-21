@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/cryptomining-calc/static/css/main.fb4a83a4.chunk.css",
-    "main.js": "/cryptomining-calc/static/js/main.34b91175.chunk.js",
-    "main.js.map": "/cryptomining-calc/static/js/main.34b91175.chunk.js.map",
+    "main.css": "/cryptomining-calc/static/css/main.ccc61584.chunk.css",
+    "main.js": "/cryptomining-calc/static/js/main.817a5b29.chunk.js",
+    "main.js.map": "/cryptomining-calc/static/js/main.817a5b29.chunk.js.map",
     "runtime-main.js": "/cryptomining-calc/static/js/runtime-main.85d488f5.js",
     "runtime-main.js.map": "/cryptomining-calc/static/js/runtime-main.85d488f5.js.map",
-    "static/js/2.f6c4627b.chunk.js": "/cryptomining-calc/static/js/2.f6c4627b.chunk.js",
-    "static/js/2.f6c4627b.chunk.js.map": "/cryptomining-calc/static/js/2.f6c4627b.chunk.js.map",
+    "static/js/2.fccb7e2c.chunk.js": "/cryptomining-calc/static/js/2.fccb7e2c.chunk.js",
+    "static/js/2.fccb7e2c.chunk.js.map": "/cryptomining-calc/static/js/2.fccb7e2c.chunk.js.map",
     "index.html": "/cryptomining-calc/index.html",
-    "static/css/main.fb4a83a4.chunk.css.map": "/cryptomining-calc/static/css/main.fb4a83a4.chunk.css.map",
-    "static/js/2.f6c4627b.chunk.js.LICENSE.txt": "/cryptomining-calc/static/js/2.f6c4627b.chunk.js.LICENSE.txt"
+    "static/css/main.ccc61584.chunk.css.map": "/cryptomining-calc/static/css/main.ccc61584.chunk.css.map",
+    "static/js/2.fccb7e2c.chunk.js.LICENSE.txt": "/cryptomining-calc/static/js/2.fccb7e2c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.85d488f5.js",
-    "static/js/2.f6c4627b.chunk.js",
-    "static/css/main.fb4a83a4.chunk.css",
-    "static/js/main.34b91175.chunk.js"
+    "static/js/2.fccb7e2c.chunk.js",
+    "static/css/main.ccc61584.chunk.css",
+    "static/js/main.817a5b29.chunk.js"
   ]
 }
