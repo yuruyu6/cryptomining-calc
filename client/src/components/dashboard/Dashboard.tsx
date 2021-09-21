@@ -2,7 +2,11 @@ import React, { createContext, useCallback, useEffect, useState } from 'react'
 import { currentEthRate, earningsInfo, StatPeriod } from '../../types'
 import { getCurrentEthEarningsInfo, getCurrentEthRate } from '../../utils/API'
 import { calcCryptoEarning } from '../../utils/calculation'
-import { DASHBOARD_EXAMPLE_HASHRATE, DEFAULT_STAT_PERIOD, STAT_PERIODS } from '../../utils/constants'
+import {
+  DASHBOARD_EXAMPLE_HASHRATE,
+  DEFAULT_STAT_PERIOD,
+  STAT_PERIODS,
+} from '../../utils/constants'
 import { useLocalStorage } from '../../utils/hooks/useLocalStorage'
 import { Modal } from '../ui/Modal'
 import { StatsDashboard } from './dashboardBlocks/StatsDashboardBlock'
@@ -14,7 +18,7 @@ import { UserEquipment } from './UserEquipment'
 
 interface DashboardState {
   isLoading: boolean
-  currentPeriod: StatPeriod | undefined
+  period: StatPeriod
   calculatedEarning: number | undefined
   currentEthRate: currentEthRate | undefined
   earningsInfo: earningsInfo | undefined
@@ -28,10 +32,10 @@ interface DashboardContextProps {
 
 interface ModalState {
   isShowing: boolean
-  mode: modalStateMod
+  mode: modalStateMode
 }
 
-type modalStateMod = 'import' | 'export'
+type modalStateMode = 'import' | 'export'
 
 export const DashboardContext = createContext<Partial<DashboardContextProps>>(
   {}
@@ -39,7 +43,7 @@ export const DashboardContext = createContext<Partial<DashboardContextProps>>(
 
 const initialDashboardState = {
   isLoading: true,
-  currentPeriod: DEFAULT_STAT_PERIOD,
+  period: DEFAULT_STAT_PERIOD,
   currentEthRate: undefined,
   earningsInfo: undefined,
   calculatedEarning: undefined,
@@ -56,20 +60,21 @@ export const Dashboard: React.FC = () => {
   const [userData, setUserData] = useLocalStorage('crypto', [])
 
   const fetchData = useCallback(async () => {
-    setDashboardState(initialDashboardState)
+    setDashboardState((prevState) => ({ ...prevState, isLoading: true }))
     const currentEthRate = await getCurrentEthRate()
     const earningsInfo = await getCurrentEthEarningsInfo()
-    setDashboardState({
+    setDashboardState((prevState) => ({
       isLoading: false,
       currentEthRate: currentEthRate,
       earningsInfo: earningsInfo,
-      currentPeriod: currentPeriod,
+      period: prevState.period,
       calculatedEarning: calcCryptoEarning(
         currentEthRate.ethUsdRate,
         earningsInfo.expectedReward24H,
-        DASHBOARD_EXAMPLE_HASHRATE
+        DASHBOARD_EXAMPLE_HASHRATE,
+        prevState.period.value
       ),
-    })
+    }))
   }, [])
 
   const onClickImportButton = () => {
@@ -84,15 +89,23 @@ export const Dashboard: React.FC = () => {
     setModalState({ isShowing: false, mode: modalState.mode })
   }
 
-
-  const onClickSwitchField = () => {
+  const onClickSwitchPeriodField = () => {
     const currentPeriodIndex = STAT_PERIODS.findIndex(
-      (item) => item.name === dashboardState.currentPeriod.name
+      (item) => item.name === dashboardState.period.name
     )
     const nextPeriodIndex =
       currentPeriodIndex >= STAT_PERIODS.length - 1 ? 0 : currentPeriodIndex + 1
 
-    setDashboardState(STAT_PERIODS[nextPeriodIndex])
+    setDashboardState((prevState) => ({
+      ...prevState,
+      period: STAT_PERIODS[nextPeriodIndex],
+      calculatedEarning: calcCryptoEarning(
+        prevState?.currentEthRate?.ethUsdRate ?? 1,
+        prevState?.earningsInfo?.expectedReward24H ?? 1,
+        DASHBOARD_EXAMPLE_HASHRATE,
+        STAT_PERIODS[nextPeriodIndex].value
+      ),
+    }))
   }
 
   useEffect(() => {
@@ -107,10 +120,9 @@ export const Dashboard: React.FC = () => {
         onClickLastUpdateLabel={fetchData}
         onClickImportButton={onClickImportButton}
         onClickExportButton={onClickExportButton}
-        onClickSwitchField={onClickSwitchField}
       />
       <div className="block lg:flex max-w-7xl space-x-0 lg:space-x-6 space-y-6 lg:space-y-0 justify-around mx-auto">
-        <StatsDashboard />
+        <StatsDashboard onClickSwitchPeriodField={onClickSwitchPeriodField} />
         <UserStatsDashboard />
       </div>
       <UserEquipment />

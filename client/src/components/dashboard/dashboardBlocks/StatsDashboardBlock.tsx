@@ -4,8 +4,15 @@ import { DashboardContext } from '../Dashboard'
 import { EthereumSVG } from '../../svgs/Ethereum'
 import { Hint } from '../../ui/Hint'
 import { Loader } from '../../ui/Loader'
+import { StatsPeriodSwitch } from '../StatsPeriodSwitch'
 
-export const StatsDashboard: React.FC = () => {
+interface StatsDashboardProps {
+  onClickSwitchPeriodField: () => void
+}
+
+export const StatsDashboard: React.FC<StatsDashboardProps> = ({
+  onClickSwitchPeriodField,
+}) => {
   const { dashboardState } = useContext(DashboardContext)
 
   return (
@@ -17,9 +24,13 @@ export const StatsDashboard: React.FC = () => {
         </div>
         <Hint hintText="Information provided by HiveOn Pool" />
       </div>
-      <div className="text-xl md:text-3xl block md:flex items-center justify-center md:space-x-4">
+      <div className="text-xl md:text-3xl block md:flex items-center justify-around md:space-x-4">
         <div className="text-center gap-4">
-          Daily earnings per
+          <StatsPeriodSwitch
+            onClickSwitchPeriodField={onClickSwitchPeriodField}
+            currentPeriod={dashboardState.period}
+          />
+          earnings per
           <div className="text-gray-300">{DASHBOARD_EXAMPLE_HASHRATE} MH/s</div>
         </div>
         <div className="mt-2 md:m-0 text-center">
