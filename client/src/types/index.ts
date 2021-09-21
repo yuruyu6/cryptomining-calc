@@ -19,3 +19,8 @@ export interface userEarningInfo extends userEarningInfoInput {
   uuid: string
   quantity: number
 }
+
+export interface StatPeriod {
+  name: string
+  value: number
+}
