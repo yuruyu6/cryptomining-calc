@@ -1,25 +1,17 @@
 import { useState } from 'react'
 import { STAT_PERIODS } from '../../utils/constants'
 
-interface Props {}
+interface StatsPeriodSwitchProps {
+  onClickSwitchField: () => void
+}
 
-export const StatsPeriodSwitch = (props: Props) => {
-  const [currentPeriod, setCurrentPeriod] = useState(STAT_PERIODS[0])
-
-  const onClickSwitchField = () => {
-    const currentPeriodIndex = STAT_PERIODS.findIndex(
-      (item) => item.name === currentPeriod.name
-    )
-    const nextPeriodIndex =
-      currentPeriodIndex >= STAT_PERIODS.length - 1 ? 0 : currentPeriodIndex + 1
-
-    setCurrentPeriod(STAT_PERIODS[nextPeriodIndex])
-  }
+export const StatsPeriodSwitch: React.FC<StatsPeriodSwitchProps> = ({onClickSwitchField}) => {
+  
 
   return (
     <button
       className="flex items-center focus:outline-none"
-      onClick={() => onClickSwitchField()}
+      onClick={onClickSwitchField}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

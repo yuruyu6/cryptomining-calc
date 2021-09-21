@@ -11,12 +11,14 @@ interface HeaderProps {
   onClickLastUpdateLabel: () => void
   onClickImportButton: () => void
   onClickExportButton: () => void
+  onClickSwitchField: () => void
 }
 
 export const Header: React.FC<HeaderProps> = ({
   onClickLastUpdateLabel,
   onClickImportButton,
   onClickExportButton,
+  onClickSwitchField,
 }) => {
   const { dashboardState, userData } = useContext(DashboardContext)
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
@@ -77,7 +79,7 @@ export const Header: React.FC<HeaderProps> = ({
           )}
         </div>
       </div>
-                <StatsPeriodSwitch />
+      <StatsPeriodSwitch onClickSwitchField={onClickSwitchField} />
       <div className="flex space-x-2">
         <Transition
           as="button"

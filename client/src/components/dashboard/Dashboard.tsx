@@ -1,8 +1,8 @@
 import React, { createContext, useCallback, useEffect, useState } from 'react'
-import { currentEthRate, earningsInfo } from '../../types'
+import { currentEthRate, earningsInfo, StatPeriod } from '../../types'
 import { getCurrentEthEarningsInfo, getCurrentEthRate } from '../../utils/API'
 import { calcCryptoEarning } from '../../utils/calculation'
-import { DASHBOARD_EXAMPLE_HASHRATE } from '../../utils/constants'
+import { DASHBOARD_EXAMPLE_HASHRATE, DEFAULT_STAT_PERIOD, STAT_PERIODS } from '../../utils/constants'
 import { useLocalStorage } from '../../utils/hooks/useLocalStorage'
 import { Modal } from '../ui/Modal'
 import { StatsDashboard } from './dashboardBlocks/StatsDashboardBlock'
@@ -14,6 +14,7 @@ import { UserEquipment } from './UserEquipment'
 
 interface DashboardState {
   isLoading: boolean
+  currentPeriod: StatPeriod | undefined
   calculatedEarning: number | undefined
   currentEthRate: currentEthRate | undefined
   earningsInfo: earningsInfo | undefined
@@ -38,6 +39,7 @@ export const DashboardContext = createContext<Partial<DashboardContextProps>>(
 
 const initialDashboardState = {
   isLoading: true,
+  currentPeriod: DEFAULT_STAT_PERIOD,
   currentEthRate: undefined,
   earningsInfo: undefined,
   calculatedEarning: undefined,
@@ -61,6 +63,7 @@ export const Dashboard: React.FC = () => {
       isLoading: false,
       currentEthRate: currentEthRate,
       earningsInfo: earningsInfo,
+      currentPeriod: currentPeriod,
       calculatedEarning: calcCryptoEarning(
         currentEthRate.ethUsdRate,
         earningsInfo.expectedReward24H,
@@ -81,6 +84,17 @@ export const Dashboard: React.FC = () => {
     setModalState({ isShowing: false, mode: modalState.mode })
   }
 
+
+  const onClickSwitchField = () => {
+    const currentPeriodIndex = STAT_PERIODS.findIndex(
+      (item) => item.name === dashboardState.currentPeriod.name
+    )
+    const nextPeriodIndex =
+      currentPeriodIndex >= STAT_PERIODS.length - 1 ? 0 : currentPeriodIndex + 1
+
+    setDashboardState(STAT_PERIODS[nextPeriodIndex])
+  }
+
   useEffect(() => {
     fetchData()
   }, [fetchData])
@@ -93,6 +107,7 @@ export const Dashboard: React.FC = () => {
         onClickLastUpdateLabel={fetchData}
         onClickImportButton={onClickImportButton}
         onClickExportButton={onClickExportButton}
+        onClickSwitchField={onClickSwitchField}
       />
       <div className="block lg:flex max-w-7xl space-x-0 lg:space-x-6 space-y-6 lg:space-y-0 justify-around mx-auto">
         <StatsDashboard />
