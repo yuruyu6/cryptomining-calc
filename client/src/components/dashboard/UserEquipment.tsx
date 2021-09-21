@@ -17,7 +17,8 @@ export const UserEquipment: React.FC = () => {
       return calcCryptoEarning(
         dashboardState.currentEthRate.ethUsdRate,
         dashboardState.earningsInfo.expectedReward24H,
-        hashrate
+        hashrate,
+        dashboardState.period.value        
       ).toFixed(2)
     }
   }

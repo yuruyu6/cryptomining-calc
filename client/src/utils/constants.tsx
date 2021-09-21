@@ -8,3 +8,4 @@ export const STAT_PERIODS: StatPeriod[] = [
   { name: 'monthly', value: 30 },
   { name: 'yearly', value: 360 },
 ]
+export const DEFAULT_STAT_PERIOD: StatPeriod = STAT_PERIODS[0]
