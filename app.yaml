@@ -2,4 +2,5 @@ runtime: nodejs16
 
 env_variables:
   PORT: 8080
+  FRONTEND_URL: "https://yuruyu6.github.io"
   SERVER_ONLY: true

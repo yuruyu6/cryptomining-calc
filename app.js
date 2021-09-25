@@ -9,14 +9,15 @@ const Mysql = require('fastify-mysql')
 const Axios = require('fastify-axios')
 const Sensible = require('fastify-sensible')
 const Static = require('fastify-static')
+const Helmet = require('fastify-helmet')
 
 module.exports = async function (fastify, opts) {
-  fastify.register(Cors, { origin: true })
+  fastify.register(Cors, { origin: process.env.FRONTEND_URL })
   fastify.register(Mysql, {
     connectionString: `mysql://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_SCHEMA}`,
   })
   fastify.register(Sensible)
-
+  fastify.register(Helmet)
   fastify.register(Axios)
   fastify.register(AutoLoad, {
     dir: path.join(__dirname, 'plugins'),
