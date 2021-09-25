@@ -1,13 +1,13 @@
 import { Transition } from '@headlessui/react'
 import React, { useContext, useState } from 'react'
-import { userEarningInfo, userEarningInfoInput } from '../../../types'
+import { userEarningInfo, userEarningInfoInput } from '../../../../types'
 import {
   calcArrayOfCryptoEarnings,
   generateUUID
-} from '../../../utils/calculation'
-import { Loader } from '../../ui/Loader'
-import { AddRecordForm } from '../AddRecordForm'
-import { DashboardContext } from '../Dashboard'
+} from '../../../../utils/calculation'
+import { Loader } from '../../../ui/Loader'
+import { AddRecordForm } from './AddRecordForm'
+import { DashboardContext } from '../../Dashboard'
 
 export const UserStatsDashboard: React.FC = () => {
   const { dashboardState, userData, setUserData } = useContext(DashboardContext)
@@ -85,7 +85,7 @@ export const UserStatsDashboard: React.FC = () => {
               </div>
 
               {dashboardState.isLoading ? (
-                <div className="text-4xl my-4 md:mt-8">
+                <div className="text-xl md:text-3xl py-8 md:py-14">
                   <Loader />
                 </div>
               ) : (

@@ -1,4 +1,4 @@
-import { StatPeriod } from '../../types'
+import { StatPeriod } from '../../../../types'
 
 interface StatsPeriodSwitchProps {
   onClickSwitchPeriodField: () => void

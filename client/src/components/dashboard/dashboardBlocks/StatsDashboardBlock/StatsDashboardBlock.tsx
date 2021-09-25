@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import { DASHBOARD_EXAMPLE_HASHRATE } from '../../../utils/constants'
-import { DashboardContext } from '../Dashboard'
-import { EthereumSVG } from '../../svgs/Ethereum'
-import { Hint } from '../../ui/Hint'
-import { Loader } from '../../ui/Loader'
-import { StatsPeriodSwitch } from '../StatsPeriodSwitch'
+import { DASHBOARD_EXAMPLE_HASHRATE } from '../../../../utils/constants'
+import { DashboardContext } from '../../Dashboard'
+import { EthereumSVG } from '../../../svgs/Ethereum'
+import { Hint } from '../../../ui/Hint'
+import { Loader } from '../../../ui/Loader'
+import { StatsPeriodSwitch } from './StatsPeriodSwitch'
 
 interface StatsDashboardProps {
   onClickSwitchPeriodField: () => void
