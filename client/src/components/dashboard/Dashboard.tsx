@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useEffect, useState } from 'react'
-import { currentEthRate, earningsInfo, StatPeriod } from '../../types'
-import { getCurrentEthEarningsInfo, getCurrentEthRate } from '../../utils/API'
+import { earningsInfo, StatPeriod } from '../../types'
+import { getCurrentEthEarningsInfo } from '../../utils/API'
 import { calcCryptoEarning } from '../../utils/calculation'
 import {
   DASHBOARD_EXAMPLE_HASHRATE,
@@ -20,7 +20,7 @@ interface DashboardState {
   isLoading: boolean
   period: StatPeriod
   calculatedEarning: number | undefined
-  currentEthRate: currentEthRate | undefined
+  currentEthRate: number | undefined
   earningsInfo: earningsInfo | undefined
 }
 
@@ -61,15 +61,14 @@ export const Dashboard: React.FC = () => {
 
   const fetchData = useCallback(async () => {
     setDashboardState((prevState) => ({ ...prevState, isLoading: true }))
-    const currentEthRate = await getCurrentEthRate()
     const earningsInfo = await getCurrentEthEarningsInfo()
     setDashboardState((prevState) => ({
       isLoading: false,
-      currentEthRate: currentEthRate,
+      currentEthRate: earningsInfo.exchangeRate,
       earningsInfo: earningsInfo,
       period: prevState.period,
       calculatedEarning: calcCryptoEarning(
-        currentEthRate.ethUsdRate,
+        earningsInfo.exchangeRate,
         earningsInfo.expectedReward24H,
         DASHBOARD_EXAMPLE_HASHRATE,
         prevState.period.value
@@ -100,7 +99,7 @@ export const Dashboard: React.FC = () => {
       ...prevState,
       period: STAT_PERIODS[nextPeriodIndex],
       calculatedEarning: calcCryptoEarning(
-        prevState?.currentEthRate?.ethUsdRate ?? 1,
+        prevState?.currentEthRate ?? 1,
         prevState?.earningsInfo?.expectedReward24H ?? 1,
         DASHBOARD_EXAMPLE_HASHRATE,
         STAT_PERIODS[nextPeriodIndex].value

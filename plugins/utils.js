@@ -59,7 +59,7 @@ module.exports = fp(async function (fastify, opts) {
         const result = {
           expectedReward24H: ETH.expectedReward24H,
           meanExpectedReward24H: ETH.meanExpectedReward24H,
-          exchangeRate: ETH.exchangeRate,
+          exchangeRate: await fastify.getEthRate(),
         }
         memoryStorage.set('ethEarningsInfo', result)
         return result

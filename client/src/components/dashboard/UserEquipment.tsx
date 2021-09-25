@@ -15,10 +15,10 @@ export const UserEquipment: React.FC = () => {
   const getCalculatedEarningInUSDT = (hashrate: number) => {
     if (dashboardState.currentEthRate && dashboardState.earningsInfo) {
       return calcCryptoEarning(
-        dashboardState.currentEthRate.ethUsdRate,
+        dashboardState.currentEthRate,
         dashboardState.earningsInfo.expectedReward24H,
         hashrate,
-        dashboardState.period.value        
+        dashboardState.period.value
       ).toFixed(2)
     }
   }

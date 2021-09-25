@@ -69,8 +69,7 @@ export const Header: React.FC<HeaderProps> = ({
           ) : (
             <span className="ml-1 text-white">
               $
-              {(dashboardState.currentEthRate &&
-                dashboardState.currentEthRate.ethUsdRate.toFixed(2)) ??
+              {(dashboardState.currentEthRate?.toFixed(2)) ??
                 'Fetch error'}
             </span>
           )}
