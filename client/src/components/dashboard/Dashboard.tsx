@@ -1,5 +1,10 @@
 import React, { createContext, useCallback, useEffect, useState } from 'react'
-import { earningsInfo, StatPeriod } from '../../types'
+import {
+  earningsInfo,
+  SetValue,
+  StatPeriod,
+  userEarningInfo,
+} from '../../types'
 import { getCurrentEthEarningsInfo } from '../../utils/API'
 import { calcCryptoEarning } from '../../utils/calculation'
 import {
@@ -25,9 +30,9 @@ interface DashboardState {
 }
 
 interface DashboardContextProps {
-  dashboardState: any
-  userData: any
-  setUserData: any
+  dashboardState: DashboardState
+  userData: userEarningInfo[]
+  setUserData: SetValue<any>
 }
 
 interface ModalState {
@@ -37,9 +42,7 @@ interface ModalState {
 
 type modalStateMode = 'import' | 'export'
 
-export const DashboardContext = createContext<Partial<DashboardContextProps>>(
-  {}
-)
+export const DashboardContext = createContext({} as DashboardContextProps)
 
 const initialDashboardState = {
   isLoading: true,
@@ -50,6 +53,10 @@ const initialDashboardState = {
 }
 
 export const Dashboard: React.FC = () => {
+  const [userData, setUserData] = useLocalStorage<userEarningInfo[]>(
+    'crypto',
+    []
+  )
   const [dashboardState, setDashboardState] = useState<DashboardState>(
     initialDashboardState
   )
@@ -57,7 +64,6 @@ export const Dashboard: React.FC = () => {
     isShowing: false,
     mode: 'import',
   })
-  const [userData, setUserData] = useLocalStorage('crypto', [])
 
   const fetchData = useCallback(async () => {
     setDashboardState((prevState) => ({ ...prevState, isLoading: true }))
