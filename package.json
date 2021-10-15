@@ -43,7 +43,7 @@
     "fastify-mysql": "^2.1.0",
     "fastify-plugin": "^3.0.0",
     "fastify-sensible": "^3.1.0",
-    "fastify-static": "^4.2.3",
+    "fastify-static": "^4.2.4",
     "node-cache": "^5.1.2"
   },
   "devDependencies": {
