@@ -21,6 +21,8 @@ const filterDeviceByName = (name: string): DeviceInfo[] => {
   )
 }
 
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+
 export const AddRecordForm: React.FC<AddRecordFormProps> = ({
   changeView,
   onAddNewRecord,
@@ -65,6 +67,10 @@ export const AddRecordForm: React.FC<AddRecordFormProps> = ({
     changeView()
   }
 
+  const scrollIntoInput = () => {
+    isMobile && inputNameRef.current?.scrollIntoView()
+  }
+
   return (
     <div>
       <div className="flex justify-end">
@@ -100,7 +106,11 @@ export const AddRecordForm: React.FC<AddRecordFormProps> = ({
               ref(e)
               inputNameRef.current = e
             }}
-            onFocus={() => setIsVisibleDeviceSelector(true)}
+            onClick={() => scrollIntoInput()}
+            onFocus={() => {
+              setIsVisibleDeviceSelector(true)
+              scrollIntoInput()
+            }}
           />
           {isVisibleDeviceSelector && deviceList.length > 0 && (
             <DeviceSelector
