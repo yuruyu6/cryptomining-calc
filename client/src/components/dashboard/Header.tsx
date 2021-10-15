@@ -68,9 +68,7 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="ml-1 bg-gray-500 rounded animate-pulse w-16 h-4"></div>
           ) : (
             <span className="ml-1 text-white">
-              $
-              {(dashboardState.currentEthRate?.toFixed(2)) ??
-                'Fetch error'}
+              ${dashboardState.currentEthRate?.toFixed(2) ?? 'Fetch error'}
             </span>
           )}
         </div>

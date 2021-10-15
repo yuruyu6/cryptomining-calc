@@ -24,3 +24,12 @@ export interface StatPeriod {
   name: string
   value: number
 }
+
+export type DeviceVendor = "NVIDIA" | "AMD"
+
+export interface DeviceInfo {
+  vendor: DeviceVendor
+  name: string
+  hashrate: number
+  isLHR: boolean
+}

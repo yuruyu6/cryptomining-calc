@@ -16,7 +16,7 @@ export const StatsDashboard: React.FC<StatsDashboardProps> = ({
   const { dashboardState } = useContext(DashboardContext)
 
   return (
-    <div className="flex-1 rounded-2xl pb-8 md:pb-16 pt-6 md:pt-10 px-8 bg-gray-700 transition hover:opacity-90">
+    <div className="flex-1 rounded-2xl pb-8 md:pb-16 pt-6 md:pt-10 px-8 bg-gray-700 transition hover:bg-opacity-90">
       <div className="flex justify-between items-start md:mb-6">
         <div className="flex items-center opacity-50 select-none">
           <EthereumSVG />

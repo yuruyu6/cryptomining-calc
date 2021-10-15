@@ -41,7 +41,7 @@ export const UserStatsDashboard: React.FC = () => {
   }
 
   return (
-    <div className="flex-1 rounded-2xl text-xl pb-8 md:pb-12 lg:pb-4 pt-6 md:pt-10 px-8 bg-gray-700 transition hover:opacity-90">
+    <div className="flex-1 rounded-2xl text-xl pb-8 md:pb-12 lg:pb-4 pt-6 md:pt-10 px-8 bg-gray-700 transition hover:bg-opacity-90">
       {isFormActive ? (
         <Transition
           show={isFormActive}
