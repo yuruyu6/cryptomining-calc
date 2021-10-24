@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { DeviceInfo, userEarningInfoInput } from '../../../../types'
+import { isMobile } from '../../../../utils'
 import { DEVICE_LIST } from '../../../../utils/constants'
 import { useOnClickOutside } from '../../../../utils/hooks/useOnClickOutside'
 import { DeviceSelector } from './DeviceSelector'
@@ -21,7 +22,8 @@ const filterDeviceByName = (name: string): DeviceInfo[] => {
   )
 }
 
-const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+const validateHashrate = (hashrate: number | string): boolean =>
+  /^[0-9]+$/.test(String(hashrate))
 
 export const AddRecordForm: React.FC<AddRecordFormProps> = ({
   changeView,
@@ -29,28 +31,27 @@ export const AddRecordForm: React.FC<AddRecordFormProps> = ({
 }) => {
   const [isVisibleDeviceSelector, setIsVisibleDeviceSelector] = useState(false)
   const [deviceList, setDeviceList] = useState<DeviceInfo[]>(DEVICE_LIST)
-  const { register, handleSubmit, watch, setValue, setFocus, getValues } =
-    useForm<FormValues>({
-      mode: 'onSubmit',
-    })
-  const { name, hashrate } = watch()
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    setFocus,
+    formState: { errors },
+  } = useForm<FormValues>({
+    mode: 'onSubmit',
+  })
+  const { name } = watch()
   const inputNameRef = useRef<HTMLInputElement | null>(null)
-  const { ref, ...rest } = register('name')
+  const { ref, ...rest } = register('name', {
+    maxLength: 17,
+  })
 
   useOnClickOutside(inputNameRef, () => setIsVisibleDeviceSelector(false))
 
   useEffect(() => {
     setFocus('name')
   }, [setFocus])
-
-  useEffect(() => {
-    if (hashrate < 1) {
-      setValue('hashrate', 1)
-    }
-    if (name?.length > 17) {
-      setValue('name', name.slice(0, 17))
-    }
-  }, [getValues, setValue, name, hashrate])
 
   useEffect(() => {
     setDeviceList(filterDeviceByName(name))
@@ -96,10 +97,12 @@ export const AddRecordForm: React.FC<AddRecordFormProps> = ({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="relative">
           <input
-            className="w-full my-3 pb-2"
+            className={
+              errors?.name ? 'w-full mb-3 py-2 input-warn' : 'w-full mb-3 py-2'
+            }
             type="text"
             placeholder="Name"
-            //Share ref usage https://react-hook-form.com/faqs#Howtosharerefusage
+            //share ref usage https://react-hook-form.com/faqs#Howtosharerefusage
             {...rest}
             name="name"
             ref={(e) => {
@@ -121,8 +124,15 @@ export const AddRecordForm: React.FC<AddRecordFormProps> = ({
         </div>
         <div className="relative items-center">
           <input
-            className="w-full mb-3 py-2"
-            {...register('hashrate')}
+            className={
+              errors?.hashrate
+                ? 'w-full mb-3 py-2 input-warn'
+                : 'w-full mb-3 py-2'
+            }
+            {...register('hashrate', {
+              validate: (value) => validateHashrate(value),
+            })}
+            onFocus={() => setIsVisibleDeviceSelector(false)}
             type="number"
             defaultValue="100"
             placeholder="Hashrate"
@@ -132,6 +142,7 @@ export const AddRecordForm: React.FC<AddRecordFormProps> = ({
         <div className="flex justify-end">
           <button
             className="opacity-50 transition-opacity hover:opacity-75"
+            disabled={!Boolean(errors)}
             onClick={handleSubmit(onSubmit)}
           >
             <svg

@@ -20,9 +20,9 @@ export const DEVICE_LIST: DeviceInfo[] = [
   { vendor: DEVICE_VENDOR[0], name: 'RTX 3070', hashrate: 64, isLHR: false },
   { vendor: DEVICE_VENDOR[0], name: 'RTX 3070', hashrate: 42, isLHR: true },
   { vendor: DEVICE_VENDOR[0], name: 'RTX 3070TI', hashrate: 58, isLHR: true },
-  { vendor: DEVICE_VENDOR[0], name: 'RTX 3080', hashrate: 105, isLHR: false },
+  { vendor: DEVICE_VENDOR[0], name: 'RTX 3080', hashrate: 100, isLHR: false },
   { vendor: DEVICE_VENDOR[0], name: 'RTX 3080', hashrate: 65, isLHR: true },
-  { vendor: DEVICE_VENDOR[0], name: 'RTX 3080TI', hashrate: 81, isLHR: true },
+  { vendor: DEVICE_VENDOR[0], name: 'RTX 3080TI', hashrate: 90, isLHR: true },
   { vendor: DEVICE_VENDOR[0], name: 'RTX 3090', hashrate: 115, isLHR: false },
   { vendor: DEVICE_VENDOR[1], name: 'TEST', hashrate: 30, isLHR: false },
 ]

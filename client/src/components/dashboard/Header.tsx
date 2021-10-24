@@ -2,6 +2,7 @@ import { Transition } from '@headlessui/react'
 import dayjs from 'dayjs'
 import React, { useContext } from 'react'
 import ReactTooltip from 'react-tooltip'
+import { isMobile } from '../../utils'
 import { Export } from '../svgs/Export'
 import { Import } from '../svgs/Import'
 import { DashboardContext } from './Dashboard'
@@ -18,7 +19,6 @@ export const Header: React.FC<HeaderProps> = ({
   onClickExportButton,
 }) => {
   const { dashboardState, userData } = useContext(DashboardContext)
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
 
   return (
     <section className="flex mt-8 mb-12 h-8 items-center justify-between">

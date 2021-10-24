@@ -17,7 +17,11 @@
   }
 
   input {
-    @apply bg-gray-700 focus:outline-none border-b-2 border-gray-600;
+    @apply bg-gray-700 focus:outline-none border-b-2 border-gray-600 transition-colors;
+  }
+
+  .input-warn {
+    @apply border-red-600;
   }
 
   .modal {
