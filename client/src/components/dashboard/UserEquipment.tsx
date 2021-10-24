@@ -35,7 +35,7 @@ export const UserEquipment: React.FC = () => {
   return (
     <div className="mt-8 mb-6">
       {!dashboardState.isLoading && userData.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 grid-flow-row gap-4 md:gap-6 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 grid-flow-row gap-4 md:gap-6">
           {userData
             .sort((a: userEarningInfo, b: userEarningInfo) => {
               if (+a.hashrate < +b.hashrate) return 1
@@ -43,24 +43,23 @@ export const UserEquipment: React.FC = () => {
               return 0
             })
             .map((device: userEarningInfo) => (
-              <div key={device.uuid}>
-                <div className="py-3 px-4 bg-gray-700 rounded hover:opacity-90">
-                  <div className="">
-                    <div className="flex justify-between items-center opacity-50 truncate">
-                      {device.name} - {device.hashrate} MH/s
-                      <button
-                        onClick={() => onClickDeleteButton(device.uuid)}
-                        aria-label="Delete record"
-                      >
-                        <Trashcan />
-                      </button>
-                    </div>
-                    <div>
-                      <p>${getCalculatedEarningInUSDT(device.hashrate)}</p>
-                      <p>{getCalculatedEarningInETH(device.hashrate)} ETH</p>
-                    </div>
+              <div
+                className="py-3 px-4 bg-gray-700 rounded hover:opacity-90"
+                key={device.uuid}
+              >
+                  <div className="flex justify-between items-center opacity-50">
+                    {device.name} - {device.hashrate} MH/s
+                    <button
+                      onClick={() => onClickDeleteButton(device.uuid)}
+                      aria-label="Delete record"
+                    >
+                      <Trashcan />
+                    </button>
                   </div>
-                </div>
+                  <div>
+                    <p>${getCalculatedEarningInUSDT(device.hashrate)}</p>
+                    <p>{getCalculatedEarningInETH(device.hashrate)} ETH</p>
+                  </div>
               </div>
             ))}
         </div>
