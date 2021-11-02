@@ -24,5 +24,11 @@ export const DEVICE_LIST: DeviceInfo[] = [
   { vendor: DEVICE_VENDOR[0], name: 'RTX 3080', hashrate: 65, isLHR: true },
   { vendor: DEVICE_VENDOR[0], name: 'RTX 3080TI', hashrate: 90, isLHR: true },
   { vendor: DEVICE_VENDOR[0], name: 'RTX 3090', hashrate: 115, isLHR: false },
-  { vendor: DEVICE_VENDOR[1], name: 'TEST', hashrate: 30, isLHR: false },
+  { vendor: DEVICE_VENDOR[1], name: 'RX 5500XT', hashrate: 26, isLHR: false },
+  { vendor: DEVICE_VENDOR[1], name: 'RX 5600XT', hashrate: 40, isLHR: false },
+  { vendor: DEVICE_VENDOR[1], name: 'RX 5700/XT', hashrate: 55, isLHR: false },
+  { vendor: DEVICE_VENDOR[1], name: 'RX 6600/XT', hashrate: 33, isLHR: false },
+  { vendor: DEVICE_VENDOR[1], name: 'RX 6700XT', hashrate: 48, isLHR: false },
+  { vendor: DEVICE_VENDOR[1], name: 'RX 6800/XT', hashrate: 64, isLHR: false },
+  { vendor: DEVICE_VENDOR[1], name: 'RX 6900XT', hashrate: 64, isLHR: false },
 ]
