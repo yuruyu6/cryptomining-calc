@@ -1,10 +1,7 @@
 import { Transition } from '@headlessui/react'
 import React, { useContext, useState } from 'react'
 import { userEarningInfo, userEarningInfoInput } from '../../../../types'
-import {
-  calcArrayOfCryptoEarnings,
-  generateUUID,
-} from '../../../../utils/calculation'
+import { CryptoPairList, generateUUID } from '../../../../utils/calculation'
 import { Loader } from '../../../ui/Loader'
 import { AddRecordForm } from './AddRecordForm'
 import { DashboardContext } from '../../Dashboard'
@@ -30,15 +27,12 @@ export const UserStatsDashboard: React.FC = () => {
     setUserData(storedData as [])
   }
 
-  let calculatedEarnings
-  if (dashboardState.currentEthRate && dashboardState.earningsInfo) {
-    calculatedEarnings = calcArrayOfCryptoEarnings(
-      userData,
-      dashboardState.currentEthRate,
-      dashboardState.earningsInfo.expectedReward24H,
-      dashboardState.period.value
-    )
-  }
+  const calculatedEarnings = new CryptoPairList(
+    userData,
+    dashboardState.currentEthRate,
+    dashboardState.earningsInfo?.expectedReward24H,
+    dashboardState.period.value
+  )
 
   return (
     <div className="flex-1 rounded-2xl text-xl pb-8 md:pb-12 lg:pb-4 pt-6 md:pt-10 px-8 bg-gray-700 transition hover:bg-opacity-90">
@@ -92,16 +86,16 @@ export const UserStatsDashboard: React.FC = () => {
                 calculatedEarnings && (
                   <div className="text-center">
                     <p className="text-gray-300 mb-2">
-                      {calculatedEarnings.hashrate
+                      {calculatedEarnings.summedHashrate
                         .toFixed(2)
                         .replace(/\.00$/, '')}{' '}
                       MH/s
                     </p>
                     <p className="text-4xl md:text-7xl">
-                      ${calculatedEarnings.earningsUsdt.toFixed(2)}
+                      ${calculatedEarnings.USDTEarning}
                     </p>
                     <p className="text-base md:text-lg text-gray-300">
-                      {calculatedEarnings.earningsEth.toFixed(5)} ETH
+                      {calculatedEarnings.cryptoEarning} ETH
                     </p>
                   </div>
                 )

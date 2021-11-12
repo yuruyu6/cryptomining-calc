@@ -6,7 +6,7 @@ import {
   userEarningInfo,
 } from '../../types'
 import { getCurrentEthEarningsInfo } from '../../utils/API'
-import { calcCryptoEarning } from '../../utils/calculation'
+import { CryptoPair } from '../../utils/calculation'
 import {
   DASHBOARD_EXAMPLE_HASHRATE,
   DEFAULT_STAT_PERIOD,
@@ -19,12 +19,12 @@ import { UserStatsDashboard } from './dashboardBlocks/UserStatsDashboardBlock/Us
 import { Header } from './Header'
 import { ExportBlock } from './modalBlocks/ExportBlock'
 import { ImportBlock } from './modalBlocks/ImportBlock'
-import { UserEquipment } from './UserEquipment'
+import { UserEquipment } from './userEquipment/UserEquipment'
 
 interface DashboardState {
   isLoading: boolean
   period: StatPeriod
-  calculatedEarning: number | undefined
+  cryptoPair: any
   currentEthRate: number | undefined
   earningsInfo: earningsInfo | undefined
 }
@@ -49,7 +49,7 @@ const initialDashboardState = {
   period: DEFAULT_STAT_PERIOD,
   currentEthRate: undefined,
   earningsInfo: undefined,
-  calculatedEarning: undefined,
+  cryptoPair: CryptoPair,
 }
 
 export const Dashboard: React.FC = () => {
@@ -73,12 +73,12 @@ export const Dashboard: React.FC = () => {
       currentEthRate: earningsInfo.exchangeRate,
       earningsInfo: earningsInfo,
       period: prevState.period,
-      calculatedEarning: calcCryptoEarning(
+      cryptoPair: new CryptoPair(
         earningsInfo.exchangeRate,
         earningsInfo.expectedReward24H,
         DASHBOARD_EXAMPLE_HASHRATE,
         prevState.period.value
-      ),
+      ),      
     }))
   }, [])
 
@@ -104,13 +104,14 @@ export const Dashboard: React.FC = () => {
     setDashboardState((prevState) => ({
       ...prevState,
       period: STAT_PERIODS[nextPeriodIndex],
-      calculatedEarning: calcCryptoEarning(
-        prevState?.currentEthRate ?? 1,
-        prevState?.earningsInfo?.expectedReward24H ?? 1,
+      cryptoPair: new CryptoPair(
+        prevState.currentEthRate,
+        prevState.earningsInfo?.expectedReward24H,
         DASHBOARD_EXAMPLE_HASHRATE,
         STAT_PERIODS[nextPeriodIndex].value
       ),
     }))
+    console.log(dashboardState)
   }
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { Transition } from '@headlessui/react'
 import { earningsInfo } from '../types'
 import { getEthEarningsInfo as getEarningsInfo } from '../utils/API'
-import { calcCryptoEarning } from '../utils/calculation'
+import { calcUSDTEarning } from '../utils/calculation'
 import { Loader } from './ui/Loader'
 import { MAX_ITEMS_IN_REWARDS_HISTORY_TABLE } from '../utils/constants'
 
@@ -122,7 +122,7 @@ export const RewardsHistoryTable: React.FC = () => {
                       </td>
                       <td className="border border-gray-300 p-2">
                         $
-                        {calcCryptoEarning(
+                        {calcUSDTEarning(
                           reward.expectedReward24H,
                           reward.exchangeRate,
                           100

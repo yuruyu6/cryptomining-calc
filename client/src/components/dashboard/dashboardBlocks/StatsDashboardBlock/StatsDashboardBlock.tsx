@@ -38,14 +38,14 @@ export const StatsDashboard: React.FC<StatsDashboardProps> = ({
             <Loader />
           ) : (
             <div>
-              {dashboardState.calculatedEarning && (
+              {dashboardState.cryptoPair && (
                 <div className="text-4xl md:text-7xl">
-                  ${dashboardState.calculatedEarning.toFixed(2)}
+                  ${dashboardState.cryptoPair.USDTEarning}
                 </div>
               )}
               {dashboardState.earningsInfo && (
                 <div className="text-base md:text-lg text-gray-300">
-                  {dashboardState.earningsInfo.expectedReward24H.toFixed(5)} ETH
+                  {dashboardState.cryptoPair.cryptoEarning} ETH
                 </div>
               )}
             </div>
