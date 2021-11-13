@@ -1,11 +1,13 @@
-import dayjs from 'dayjs'
 import React, { useCallback, useEffect, useState } from 'react'
 import { Transition } from '@headlessui/react'
-import { earningsInfo } from '../types'
-import { getEthEarningsInfo as getEarningsInfo } from '../utils/API'
-import { calcUSDTEarning } from '../utils/calculation'
-import { Loader } from './ui/Loader'
-import { MAX_ITEMS_IN_REWARDS_HISTORY_TABLE } from '../utils/constants'
+import { earningsInfo } from '../../types'
+import { getEthEarningsInfo as getEarningsInfo } from '../../utils/API'
+import { Loader } from '../ui/Loader'
+import {
+  MAX_ITEMS_IN_REWARDS_HISTORY_TABLE,
+  REWARDS_HISTORY_TABLE_EXAMPLE_HASHRATE,
+} from '../../utils/constants'
+import { RewardsHistoryTableTr } from './RewardsHistoryTableTr'
 
 export const RewardsHistoryTable: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true)
@@ -68,7 +70,11 @@ export const RewardsHistoryTable: React.FC = () => {
           )}
         </div>
       </h1>
-      {isShowing && <p className="text-center text-gray-300">per 100 MH/s</p>}
+      {isShowing && (
+        <p className="text-center text-gray-300">
+          per {REWARDS_HISTORY_TABLE_EXAMPLE_HASHRATE} MH/s
+        </p>
+      )}
       <Transition
         show={isShowing}
         appear={true}
@@ -102,41 +108,11 @@ export const RewardsHistoryTable: React.FC = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {rewardsList.map((reward, index) => (
-                    <Transition.Child
-                      as="tr"
+                  {rewardsList.map((reward, _) => (
+                    <RewardsHistoryTableTr
+                      reward={reward}
                       key={reward.timestamp}
-                      className="bg-gray-700 hover:bg-gray-600 transition-colors odd:bg-gray-800"
-                      enter="transition-opacity ease-linear duration-150"
-                      enterFrom="opacity-0"
-                      enterTo="opacity-100"
-                      leave="transition-opacity ease-linear duration-150"
-                      leaveFrom="opacity-100"
-                      leaveTo="opacity-0"
-                    >
-                      <td className="border border-gray-300 p-2">
-                        ${reward.exchangeRate}
-                      </td>
-                      <td className="border border-gray-300 p-2">
-                        {reward.expectedReward24H.toFixed(5)} ETH
-                      </td>
-                      <td className="border border-gray-300 p-2">
-                        $
-                        {calcUSDTEarning(
-                          reward.expectedReward24H,
-                          reward.exchangeRate,
-                          100
-                        ).toFixed(2)}
-                      </td>
-                      <td
-                        className="border border-gray-300 p-2"
-                        title={dayjs(reward.timestamp).format(
-                          'HH:mm DD/MM/YYYY'
-                        )}
-                      >
-                        {dayjs(reward.timestamp).format('DD/MM/YYYY')}
-                      </td>
-                    </Transition.Child>
+                    />
                   ))}
                 </tbody>
               </table>

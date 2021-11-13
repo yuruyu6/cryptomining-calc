@@ -4,12 +4,12 @@ import { CryptoPair } from '../../../utils/calculation'
 import { Trashcan } from '../../svgs/Trashcan'
 import { DashboardContext } from '../Dashboard'
 
-interface DeviceInfoProps {
+interface UserEquipmentGridItemProps {
   device: userEarningInfo
   onClickDeleteButton: (uuid: string) => void
 }
 
-export const DeviceInfo: React.FC<DeviceInfoProps> = ({
+export const UserEquipmentGridItem: React.FC<UserEquipmentGridItemProps> = ({
   device,
   onClickDeleteButton,
 }) => {
@@ -23,10 +23,7 @@ export const DeviceInfo: React.FC<DeviceInfoProps> = ({
   )
 
   return (
-    <div
-      className="py-3 px-4 bg-gray-700 rounded hover:opacity-90"
-      key={device.uuid}
-    >
+    <div className="py-3 px-4 bg-gray-700 rounded hover:opacity-90">
       <div className="flex justify-between items-center opacity-50">
         {device.name} - {device.hashrate} MH/s
         <button

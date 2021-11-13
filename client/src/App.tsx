@@ -1,6 +1,6 @@
 import React from 'react'
 import { Dashboard } from './components/dashboard/Dashboard'
-import { RewardsHistoryTable } from './components/RewardsHistoryTable'
+import { RewardsHistoryTable } from './components/rewardsHistory/RewardsHistoryTable'
 
 export const App: React.FC = () => {
   return (

@@ -19,14 +19,14 @@ import { UserStatsDashboard } from './dashboardBlocks/UserStatsDashboardBlock/Us
 import { Header } from './Header'
 import { ExportBlock } from './modalBlocks/ExportBlock'
 import { ImportBlock } from './modalBlocks/ImportBlock'
-import { UserEquipment } from './userEquipment/UserEquipment'
+import { UserEquipmentGrid } from './userEquipment/UserEquipmentGrid'
 
 interface DashboardState {
   isLoading: boolean
   period: StatPeriod
-  cryptoPair: any
   currentEthRate: number | undefined
   earningsInfo: earningsInfo | undefined
+  cryptoPair: any
 }
 
 interface DashboardContextProps {
@@ -42,8 +42,6 @@ interface ModalState {
 
 type modalStateMode = 'import' | 'export'
 
-export const DashboardContext = createContext({} as DashboardContextProps)
-
 const initialDashboardState = {
   isLoading: true,
   period: DEFAULT_STAT_PERIOD,
@@ -51,6 +49,8 @@ const initialDashboardState = {
   earningsInfo: undefined,
   cryptoPair: CryptoPair,
 }
+
+export const DashboardContext = createContext({} as DashboardContextProps)
 
 export const Dashboard: React.FC = () => {
   const [userData, setUserData] = useLocalStorage<userEarningInfo[]>(
@@ -78,7 +78,7 @@ export const Dashboard: React.FC = () => {
         earningsInfo.expectedReward24H,
         DASHBOARD_EXAMPLE_HASHRATE,
         prevState.period.value
-      ),      
+      ),
     }))
   }, [])
 
@@ -111,7 +111,6 @@ export const Dashboard: React.FC = () => {
         STAT_PERIODS[nextPeriodIndex].value
       ),
     }))
-    console.log(dashboardState)
   }
 
   useEffect(() => {
@@ -131,7 +130,7 @@ export const Dashboard: React.FC = () => {
         <StatsDashboard onClickSwitchPeriodField={onClickSwitchPeriodField} />
         <UserStatsDashboard />
       </div>
-      <UserEquipment />
+      <UserEquipmentGrid />
       <Modal isShowing={modalState.isShowing}>
         {modalState.mode === 'export' && (
           <ExportBlock onClickCloseModalButton={onClickCloseModalButton} />

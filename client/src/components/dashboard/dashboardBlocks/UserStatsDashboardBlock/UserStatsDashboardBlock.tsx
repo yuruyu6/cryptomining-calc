@@ -1,10 +1,11 @@
 import { Transition } from '@headlessui/react'
 import React, { useContext, useState } from 'react'
 import { userEarningInfo, userEarningInfoInput } from '../../../../types'
-import { CryptoPairList, generateUUID } from '../../../../utils/calculation'
+import { CryptoPairList } from '../../../../utils/calculation'
 import { Loader } from '../../../ui/Loader'
 import { AddRecordForm } from './AddRecordForm'
 import { DashboardContext } from '../../Dashboard'
+import { generateUUID } from '../../../../utils'
 
 export const UserStatsDashboard: React.FC = () => {
   const { dashboardState, userData, setUserData } = useContext(DashboardContext)

@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import { userEarningInfo } from '../../../types'
 import { DashboardContext } from '../Dashboard'
-import { DeviceInfo } from './UserEquipmentBlock'
+import { UserEquipmentGridItem } from './UserEquipmentGridItem'
 
-export const UserEquipment: React.FC = () => {
+export const UserEquipmentGrid: React.FC = () => {
   const { dashboardState, userData, setUserData } = useContext(DashboardContext)
 
   const onClickDeleteButton = (recordUUID: string) => {
@@ -22,9 +22,10 @@ export const UserEquipment: React.FC = () => {
               return 0
             })
             .map((device: userEarningInfo) => (
-              <DeviceInfo
+              <UserEquipmentGridItem
                 device={device}
                 onClickDeleteButton={() => onClickDeleteButton(device.uuid)}
+                key={device.uuid}
               />
             ))}
         </div>
