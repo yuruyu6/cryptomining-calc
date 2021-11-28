@@ -26,7 +26,7 @@ interface DashboardState {
   period: StatPeriod
   currentEthRate: number | undefined
   earningsInfo: earningsInfo | undefined
-  cryptoPair: any
+  cryptoPair: CryptoPair | undefined
 }
 
 interface DashboardContextProps {
@@ -47,7 +47,7 @@ const initialDashboardState = {
   period: DEFAULT_STAT_PERIOD,
   currentEthRate: undefined,
   earningsInfo: undefined,
-  cryptoPair: CryptoPair,
+  cryptoPair: undefined,
 }
 
 export const DashboardContext = createContext({} as DashboardContextProps)

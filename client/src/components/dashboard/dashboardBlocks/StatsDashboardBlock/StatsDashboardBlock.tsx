@@ -37,18 +37,16 @@ export const StatsDashboard: React.FC<StatsDashboardProps> = ({
           {dashboardState.isLoading ? (
             <Loader />
           ) : (
-            <div>
-              {dashboardState.cryptoPair && (
+            dashboardState.cryptoPair && (
+              <>
                 <div className="text-4xl md:text-7xl">
                   ${dashboardState.cryptoPair.USDTEarning}
                 </div>
-              )}
-              {dashboardState.earningsInfo && (
                 <div className="text-base md:text-lg text-gray-300">
                   {dashboardState.cryptoPair.cryptoEarning} ETH
                 </div>
-              )}
-            </div>
+              </>
+            )
           )}
         </div>
       </div>
