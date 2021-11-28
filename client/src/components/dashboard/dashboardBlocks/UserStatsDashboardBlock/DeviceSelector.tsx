@@ -1,5 +1,5 @@
 import React from 'react'
-import { DeviceInfo } from '../../../../types'
+import { DeviceInfo, DeviceVendor } from '../../../../types'
 import { AMD } from '../../../svgs/AMD'
 import { Nvidia } from '../../../svgs/Nvidia'
 
@@ -9,7 +9,7 @@ interface DeviceSelectorProps {
 }
 
 const VendorIcon: React.FC = ({ children }) => {
-  return children === 'NVIDIA' ? <Nvidia /> : <AMD />
+  return children === DeviceVendor.NVIDIA ? <Nvidia /> : <AMD />
 }
 
 export const DeviceSelector: React.FC<DeviceSelectorProps> = ({

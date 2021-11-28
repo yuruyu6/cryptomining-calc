@@ -25,7 +25,10 @@ export interface StatPeriod {
   value: number
 }
 
-export type DeviceVendor = "NVIDIA" | "AMD"
+export enum DeviceVendor {
+  NVIDIA,
+  AMD,
+}
 
 export interface DeviceInfo {
   vendor: DeviceVendor
