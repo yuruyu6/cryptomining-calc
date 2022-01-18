@@ -1,4 +1,5 @@
 import React, { useContext, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Copy } from '../../svgs/Copy'
 import { XMark } from '../../svgs/XMark'
 import { DashboardContext } from '../Dashboard'
@@ -10,6 +11,7 @@ interface ExportBlockProps {
 export const ExportBlock: React.FC<ExportBlockProps> = ({
   onClickCloseModalButton,
 }) => {
+  const { t } = useTranslation()
   const { userData } = useContext(DashboardContext)
 
   const textInput = useRef<HTMLInputElement>(null)
@@ -24,14 +26,13 @@ export const ExportBlock: React.FC<ExportBlockProps> = ({
   return (
     <div>
       <div className="flex justify-end mb-2 text-gray-500 hover:text-black transition-colors">
-        <button onClick={onClickCloseModalButton} title="Close">
+        <button onClick={onClickCloseModalButton} title={t('Close')}>
           <XMark />
         </button>
       </div>
-      <p className="text-black text-xl text-center my-2">Export data</p>
+      <p className="text-black text-xl text-center my-2">{t('Export data')}</p>
       <p className="text-black text-sm text-center my-2">
-        Click the copy button below to save your data and use it to import to
-        another device
+        {t('ExportDescription')}
       </p>
       <div className="relative items-center">
         <input
@@ -45,7 +46,7 @@ export const ExportBlock: React.FC<ExportBlockProps> = ({
           className="absolute z-10 top-2 right-2 text-gray-500 hover:text-black transition-colors"
           onClick={onClickModalCopyButton}
           aria-label="Copy to clipboard"
-          title="Copy"
+          title={t('Copy')}
         >
           <Copy />
         </button>

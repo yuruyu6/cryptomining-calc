@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { DeviceInfo, userEarningInfoInput } from '../../../../types'
 import { isMobile } from '../../../../utils'
 import { DEVICE_LIST } from '../../../../utils/constants'
@@ -29,6 +30,7 @@ export const AddRecordForm: React.FC<AddRecordFormProps> = ({
   changeView,
   onAddNewRecord,
 }) => {
+  const { t } = useTranslation()
   const [isVisibleDeviceSelector, setIsVisibleDeviceSelector] = useState(false)
   const [deviceList, setDeviceList] = useState<DeviceInfo[]>(DEVICE_LIST)
   const {
@@ -91,7 +93,7 @@ export const AddRecordForm: React.FC<AddRecordFormProps> = ({
               clipRule="evenodd"
             />
           </svg>
-          Back
+          {t('Back')}
         </button>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -101,7 +103,7 @@ export const AddRecordForm: React.FC<AddRecordFormProps> = ({
               errors?.name ? 'w-full mb-3 py-2 input-warn' : 'w-full mb-3 py-2'
             }
             type="text"
-            placeholder="Name"
+            placeholder={t('Name')}
             //share ref usage https://react-hook-form.com/faqs#Howtosharerefusage
             {...rest}
             name="name"
@@ -135,7 +137,7 @@ export const AddRecordForm: React.FC<AddRecordFormProps> = ({
             onFocus={() => setIsVisibleDeviceSelector(false)}
             type="number"
             defaultValue="100"
-            placeholder="Hashrate"
+            placeholder={t('Hashrate')}
           />
           <span className="absolute top-2 right-0">MH/s</span>
         </div>

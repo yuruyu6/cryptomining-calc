@@ -1,6 +1,7 @@
 import { Transition } from '@headlessui/react'
 import dayjs from 'dayjs'
 import React, { useContext } from 'react'
+import { useTranslation } from 'react-i18next'
 import ReactTooltip from 'react-tooltip'
 import { isMobile } from '../../utils'
 import { Export } from '../svgs/Export'
@@ -18,7 +19,12 @@ export const Header: React.FC<HeaderProps> = ({
   onClickImportButton,
   onClickExportButton,
 }) => {
+  const { t, i18n } = useTranslation()
   const { dashboardState, userData } = useContext(DashboardContext)
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng)
+  }
 
   return (
     <section className="flex mt-8 mb-12 h-8 items-center justify-between">
@@ -41,7 +47,7 @@ export const Header: React.FC<HeaderProps> = ({
               d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-          Last update:
+          {t('Last update:')}
           {dashboardState.isLoading ? (
             <div className="ml-1 bg-gray-500 rounded animate-pulse w-10 h-4"></div>
           ) : (
@@ -63,7 +69,7 @@ export const Header: React.FC<HeaderProps> = ({
               d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
             />
           </svg>
-          ETH/USDT Rate:
+          {t('ETH/USDT Rate')}:         
           {dashboardState.isLoading ? (
             <div className="ml-1 bg-gray-500 rounded animate-pulse w-16 h-4"></div>
           ) : (
@@ -74,6 +80,8 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </div>
       <div className="flex space-x-2">
+        <button onClick={() => changeLanguage('en')}>EN</button>
+        <button onClick={() => changeLanguage('ru')}>RU</button>
         <Transition
           as="button"
           aria-label="Export data"
@@ -96,7 +104,7 @@ export const Header: React.FC<HeaderProps> = ({
             type="light"
             effect="solid"
           >
-            <span className="text-gray-800 text-center">Export</span>
+            <span className="text-gray-800 text-center">{t('Export')}</span>
           </ReactTooltip>
         </Transition>
         <button
@@ -113,7 +121,7 @@ export const Header: React.FC<HeaderProps> = ({
             type="light"
             effect="solid"
           >
-            <span className="text-gray-800 text-center">Import</span>
+            <span className="text-gray-800 text-center">{t('Import')}</span>
           </ReactTooltip>
         </button>
       </div>

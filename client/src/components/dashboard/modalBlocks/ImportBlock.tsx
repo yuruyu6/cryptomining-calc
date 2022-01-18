@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { userEarningInfo } from '../../../types'
 import { XMark } from '../../svgs/XMark'
 import { DashboardContext } from '../Dashboard'
@@ -15,6 +16,7 @@ interface FormValues {
 export const ImportBlock: React.FC<ImportBlockProps> = ({
   onClickCloseModalButton,
 }) => {
+  const { t } = useTranslation()
   const { setUserData } = useContext(DashboardContext)
   const {
     register,
@@ -33,7 +35,7 @@ export const ImportBlock: React.FC<ImportBlockProps> = ({
     } catch (error) {
       setError('exportPhrase', {
         type: 'manual',
-        message: 'Incorrect export phrase',
+        message: t('Incorrect export phrase'),
       })
     }
   }
@@ -41,13 +43,13 @@ export const ImportBlock: React.FC<ImportBlockProps> = ({
   return (
     <div>
       <div className="flex justify-end mb-2 text-gray-500 hover:text-black transition-colors">
-        <button onClick={onClickCloseModalButton} title="Close">
+        <button onClick={onClickCloseModalButton} title={t('Close')}>
           <XMark />
         </button>
       </div>
-      <p className="text-black text-xl text-center my-2">Import data</p>
+      <p className="text-black text-xl text-center my-2">{t('Import data')}</p>
       <p className="text-black text-sm text-center my-2">
-        Paste saved string into the text field below to import your data
+        {t('ImportDescription')}
       </p>
       <form className="items-center" onSubmit={handleSubmit(onSubmit)}>
         <input
@@ -62,7 +64,7 @@ export const ImportBlock: React.FC<ImportBlockProps> = ({
           className="w-full rounded text-center mt-2 py-2 px-4 text-black hover:bg-gray-600 hover:text-white transition-colors"
           aria-label="Import data"
         >
-          Import
+          {t('Import')}
         </button>
       </form>
     </div>

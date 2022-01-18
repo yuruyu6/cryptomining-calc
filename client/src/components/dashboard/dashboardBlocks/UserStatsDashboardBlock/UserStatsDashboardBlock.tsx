@@ -1,13 +1,15 @@
 import { Transition } from '@headlessui/react'
 import React, { useContext, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { userEarningInfo, userEarningInfoInput } from '../../../../types'
+import { generateUUID } from '../../../../utils'
 import { CryptoPairList } from '../../../../utils/calculation'
 import { Loader } from '../../../ui/Loader'
-import { AddRecordForm } from './AddRecordForm'
 import { DashboardContext } from '../../Dashboard'
-import { generateUUID } from '../../../../utils'
+import { AddRecordForm } from './AddRecordForm'
 
 export const UserStatsDashboard: React.FC = () => {
+  const { t } = useTranslation()
   const { dashboardState, userData, setUserData } = useContext(DashboardContext)
   const [isFormActive, setIsFormActive] = useState(false)
 
@@ -58,7 +60,9 @@ export const UserStatsDashboard: React.FC = () => {
           {userData.length > 0 ? (
             <div>
               <div className="flex justify-between">
-                <p className="text-center opacity-50 select-none">Summary</p>
+                <p className="text-center opacity-50 select-none">
+                  {t('Summary')}
+                </p>
                 <button
                   className="cursor-pointer text-lg flex items-center opacity-50 transition-opacity hover:opacity-75"
                   onClick={() => onClickChangeViewButton()}
@@ -75,7 +79,7 @@ export const UserStatsDashboard: React.FC = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  Add
+                  {t('Add')}
                 </button>
               </div>
 
@@ -121,7 +125,7 @@ export const UserStatsDashboard: React.FC = () => {
                   d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              Add your equipment for tracking earnings
+              {t('Add your equipment for tracking earnings')}
             </button>
           )}
         </div>

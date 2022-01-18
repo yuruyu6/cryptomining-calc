@@ -1,15 +1,17 @@
-import React, { useCallback, useEffect, useState } from 'react'
 import { Transition } from '@headlessui/react'
+import React, { useCallback, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { earningsInfo } from '../../types'
 import { getEthEarningsInfo as getEarningsInfo } from '../../utils/API'
-import { Loader } from '../ui/Loader'
 import {
   MAX_ITEMS_IN_REWARDS_HISTORY_TABLE,
-  REWARDS_HISTORY_TABLE_EXAMPLE_HASHRATE,
+  REWARDS_HISTORY_TABLE_EXAMPLE_HASHRATE
 } from '../../utils/constants'
+import { Loader } from '../ui/Loader'
 import { RewardsHistoryTableTr } from './RewardsHistoryTableTr'
 
 export const RewardsHistoryTable: React.FC = () => {
+  const { t } = useTranslation()
   const [isLoading, setIsLoading] = useState(true)
   const [isShowing, setIsShowing] = useState(true)
   const [rewardsCount, setRewardsCount] = useState(10)
@@ -37,7 +39,7 @@ export const RewardsHistoryTable: React.FC = () => {
         onClick={() => setIsShowing(!isShowing)}
         role="button"
       >
-        Rewards History
+        {t('Rewards History')}
         <div className="text-gray-600 group-hover:text-gray-300 transition-colors ml-2">
           {isShowing ? (
             <svg
@@ -72,7 +74,7 @@ export const RewardsHistoryTable: React.FC = () => {
       </h1>
       {isShowing && (
         <p className="text-center text-gray-300">
-          per {REWARDS_HISTORY_TABLE_EXAMPLE_HASHRATE} MH/s
+          {t('per')} {REWARDS_HISTORY_TABLE_EXAMPLE_HASHRATE} MH/s
         </p>
       )}
       <Transition
@@ -96,15 +98,15 @@ export const RewardsHistoryTable: React.FC = () => {
                 <thead>
                   <tr className=" bg-gray-800">
                     <th className="px-1 sm:px-2 md:px-12 py-2">
-                      ETH/USDT Rate
+                      {t('ETH/USDT Rate')}
                     </th>
                     <th className="px-1 sm:px-2 md:px-12 py-2">
-                      ETH Expected Reward
+                      ETH {t('Expected Reward')}
                     </th>
                     <th className="px-1 sm:px-2 md:px-12 py-2">
-                      USD Expected Reward
+                      USD {t('Expected Reward')}
                     </th>
-                    <th className="px-1 sm:px-2 md:px-12 py-2">Date</th>
+                    <th className="px-1 sm:px-2 md:px-12 py-2">{t('Date')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -122,7 +124,7 @@ export const RewardsHistoryTable: React.FC = () => {
                     className="text-center rounded py-2 px-4 hover:bg-gray-600 transition-colors"
                     onClick={() => onClickShowMoreButton()}
                   >
-                    Show More
+                    {t('Show More')}
                   </button>
                 </div>
               )}

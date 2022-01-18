@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
+import { useTranslation } from 'react-i18next'
 import { DASHBOARD_EXAMPLE_HASHRATE } from '../../../../utils/constants'
-import { DashboardContext } from '../../Dashboard'
 import { EthereumSVG } from '../../../svgs/Ethereum'
 import { Hint } from '../../../ui/Hint'
 import { Loader } from '../../../ui/Loader'
+import { DashboardContext } from '../../Dashboard'
 import { StatsPeriodSwitch } from './StatsPeriodSwitch'
 
 interface StatsDashboardProps {
@@ -13,6 +14,7 @@ interface StatsDashboardProps {
 export const StatsDashboard: React.FC<StatsDashboardProps> = ({
   onClickSwitchPeriodField,
 }) => {
+  const { t } = useTranslation()
   const { dashboardState } = useContext(DashboardContext)
 
   return (
@@ -22,7 +24,7 @@ export const StatsDashboard: React.FC<StatsDashboardProps> = ({
           <EthereumSVG />
           Ethereum
         </div>
-        <Hint hintText="Information provided by HiveOn Pool" />
+        <Hint hintText={t('Information provided by HiveOn Pool')} />
       </div>
       <div className="text-xl md:text-3xl block md:flex items-center justify-around md:space-x-4">
         <div className="text-center gap-4">
@@ -30,7 +32,7 @@ export const StatsDashboard: React.FC<StatsDashboardProps> = ({
             onClickSwitchPeriodField={onClickSwitchPeriodField}
             currentPeriod={dashboardState.period}
           />
-          earnings per
+          {t('earnings per')}
           <div className="text-gray-300">{DASHBOARD_EXAMPLE_HASHRATE} MH/s</div>
         </div>
         <div className="mt-2 md:m-0 text-center">

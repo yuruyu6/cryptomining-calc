@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { StatPeriod } from '../../../../types'
 
 interface StatsPeriodSwitchProps {
@@ -9,6 +10,8 @@ export const StatsPeriodSwitch: React.FC<StatsPeriodSwitchProps> = ({
   onClickSwitchPeriodField,
   currentPeriod,
 }) => {
+  const { t } = useTranslation()
+
   return (
     <button
       className="mx-auto flex items-center focus:outline-none relative transition-colors hover:text-gray-300"
@@ -28,7 +31,7 @@ export const StatsPeriodSwitch: React.FC<StatsPeriodSwitchProps> = ({
           d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
         />
       </svg>
-      <p className="ml-1 capitalize transition-colors hover:text-gray-300">{currentPeriod.name}</p>
+      <p className="ml-1 capitalize transition-colors hover:text-gray-300">{t(currentPeriod.name)}</p>
     </button>
   )
 }
