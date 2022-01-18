@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/cryptomining-calc/static/css/main.82223fa4.css",
-    "main.js": "/cryptomining-calc/static/js/main.ce06710a.js",
+    "main.css": "/cryptomining-calc/static/css/main.ea689a73.css",
+    "main.js": "/cryptomining-calc/static/js/main.a57da913.js",
     "index.html": "/cryptomining-calc/index.html",
-    "main.82223fa4.css.map": "/cryptomining-calc/static/css/main.82223fa4.css.map",
-    "main.ce06710a.js.map": "/cryptomining-calc/static/js/main.ce06710a.js.map"
+    "main.ea689a73.css.map": "/cryptomining-calc/static/css/main.ea689a73.css.map",
+    "main.a57da913.js.map": "/cryptomining-calc/static/js/main.a57da913.js.map"
   },
   "entrypoints": [
-    "static/css/main.82223fa4.css",
-    "static/js/main.ce06710a.js"
+    "static/css/main.ea689a73.css",
+    "static/js/main.a57da913.js"
   ]
 }
