@@ -5,7 +5,8 @@ import { earningsInfo } from '../../types'
 import { getEthEarningsInfo as getEarningsInfo } from '../../utils/API'
 import {
   MAX_ITEMS_IN_REWARDS_HISTORY_TABLE,
-  REWARDS_HISTORY_TABLE_EXAMPLE_HASHRATE
+  REWARDS_HISTORY_TABLE_EXAMPLE_HASHRATE,
+  REWARDS_HISTORY_TABLE_SHOW_MORE_ITERATION,
 } from '../../utils/constants'
 import { Loader } from '../ui/Loader'
 import { RewardsHistoryTableTr } from './RewardsHistoryTableTr'
@@ -28,7 +29,7 @@ export const RewardsHistoryTable: React.FC = () => {
 
   const onClickShowMoreButton = () => {
     if (rewardsCount <= MAX_ITEMS_IN_REWARDS_HISTORY_TABLE) {
-      setRewardsCount(rewardsCount + 10)
+      setRewardsCount(rewardsCount + REWARDS_HISTORY_TABLE_SHOW_MORE_ITERATION)
     }
   }
 
