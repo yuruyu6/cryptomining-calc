@@ -113,7 +113,7 @@ export const UserStatsDashboard: React.FC = () => {
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-1/4 w-1/4 mb-4"
+                className="w-28 h-28 mb-4"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
