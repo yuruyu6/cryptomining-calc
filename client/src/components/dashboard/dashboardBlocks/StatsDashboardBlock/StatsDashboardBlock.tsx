@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DASHBOARD_EXAMPLE_HASHRATE } from '../../../../utils/constants'
-import { EthereumSVG } from '../../../svgs/Ethereum'
+import { Ethereum } from '../../../svgs/currencies/Ethereum'
 import { Hint } from '../../../ui/Hint'
 import { Loader } from '../../../ui/Loader'
 import { DashboardContext } from '../../Dashboard'
@@ -21,7 +21,7 @@ export const StatsDashboard: React.FC<StatsDashboardProps> = ({
     <div className="flex-1 rounded-2xl pb-8 md:pb-16 pt-6 md:pt-10 px-8 bg-gray-700 transition hover:bg-opacity-90">
       <div className="flex justify-between items-start md:mb-6">
         <div className="flex items-center opacity-50 select-none">
-          <EthereumSVG />
+          <Ethereum />
           Ethereum
         </div>
         <Hint hintText={t('Information provided by HiveOn Pool')} />

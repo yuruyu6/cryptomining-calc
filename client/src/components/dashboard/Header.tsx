@@ -4,8 +4,10 @@ import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import ReactTooltip from 'react-tooltip'
 import { isMobile } from '../../utils'
+import { Clock } from '../svgs/Clock'
 import { Export } from '../svgs/Export'
 import { Import } from '../svgs/Import'
+import { Rate } from '../svgs/Rate'
 import { DashboardContext } from './Dashboard'
 
 interface HeaderProps {
@@ -33,20 +35,7 @@ export const Header: React.FC<HeaderProps> = ({
           onClick={() => onClickLastUpdateLabel()}
           className="flex items-center text-gray-400 hover:underline cursor-pointer"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 mr-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
+          <Clock />
           {t('Last update:')}
           {dashboardState.isLoading ? (
             <div className="ml-1 bg-gray-500 rounded animate-pulse w-10 h-4"></div>
@@ -55,21 +44,8 @@ export const Header: React.FC<HeaderProps> = ({
           )}
         </div>
         <div className="flex items-center text-gray-400">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 mr-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-            />
-          </svg>
-          {t('ETH/USDT Rate')}:         
+          <Rate />
+          {t('ETH/USDT Rate')}:
           {dashboardState.isLoading ? (
             <div className="ml-1 bg-gray-500 rounded animate-pulse w-16 h-4"></div>
           ) : (

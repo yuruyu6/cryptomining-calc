@@ -1,4 +1,4 @@
-export const EthereumSVG = () => {
+export const Ethereum = () => {
   return (
     <div>
       <svg

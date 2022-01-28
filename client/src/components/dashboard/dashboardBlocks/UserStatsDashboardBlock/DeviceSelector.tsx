@@ -1,7 +1,7 @@
 import React from 'react'
 import { DeviceInfo, DeviceVendor } from '../../../../types'
-import { AMD } from '../../../svgs/AMD'
-import { Nvidia } from '../../../svgs/Nvidia'
+import { AMD } from '../../../svgs/vendors/AMD'
+import { Nvidia } from '../../../svgs/vendors/Nvidia'
 
 interface DeviceSelectorProps {
   deviceList: DeviceInfo[]
