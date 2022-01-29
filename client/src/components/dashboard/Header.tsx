@@ -24,6 +24,8 @@ export const Header: React.FC<HeaderProps> = ({
   const { t, i18n } = useTranslation()
   const { dashboardState, userData } = useContext(DashboardContext)
 
+  const availableLanguages: string[] = Object.keys(i18n.store.data)
+
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng)
   }
@@ -56,8 +58,11 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </div>
       <div className="flex space-x-2">
-        <button onClick={() => changeLanguage('en')}>EN</button>
-        <button onClick={() => changeLanguage('ru')}>RU</button>
+        {availableLanguages.map((language) => (
+          <button key={language} onClick={() => changeLanguage(language)}>
+            {language.toUpperCase()}
+          </button>
+        ))}
         <Transition
           as="button"
           aria-label="Export data"
