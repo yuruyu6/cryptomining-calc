@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next'
 import { userEarningInfo, userEarningInfoInput } from '../../../../types'
 import { generateUUID } from '../../../../utils'
 import { CryptoPairList } from '../../../../utils/calculation'
+import { PlusCycle } from '../../../svgs/PlusCycle'
+import { PlusCycleSolid } from '../../../svgs/PlusCycleSolid'
 import { Loader } from '../../../ui/Loader'
 import { DashboardContext } from '../../Dashboard'
 import { AddRecordForm } from './AddRecordForm'
@@ -67,18 +69,7 @@ export const UserStatsDashboard: React.FC = () => {
                   className="cursor-pointer text-lg flex items-center opacity-50 transition-opacity hover:opacity-75"
                   onClick={() => onClickChangeViewButton()}
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 mr-2"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                  <PlusCycleSolid />
                   {t('Add')}
                 </button>
               </div>
@@ -111,20 +102,7 @@ export const UserStatsDashboard: React.FC = () => {
               className="flex flex-col mx-auto items-center text-center"
               onClick={() => onClickChangeViewButton()}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-28 h-28 mb-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
+              <PlusCycle />
               {t('Add your equipment for tracking earnings')}
             </button>
           )}

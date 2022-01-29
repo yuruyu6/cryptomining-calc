@@ -5,6 +5,8 @@ import { DeviceInfo, userEarningInfoInput } from '../../../../types'
 import { isMobile } from '../../../../utils'
 import { DEVICE_LIST } from '../../../../utils/constants'
 import { useOnClickOutside } from '../../../../utils/hooks/useOnClickOutside'
+import { ArrowCycleRight } from '../../../svgs/ArrowCycleRight'
+import { LeftArrow } from '../../../svgs/LeftArrow'
 import { DeviceSelector } from './DeviceSelector'
 
 interface AddRecordFormProps {
@@ -81,18 +83,7 @@ export const AddRecordForm: React.FC<AddRecordFormProps> = ({
           className="cursor-pointer text-lg flex items-center opacity-50 transition-opacity hover:opacity-75"
           onClick={() => changeView()}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4 mr-2"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
-              clipRule="evenodd"
-            />
-          </svg>
+          <LeftArrow />
           {t('Back')}
         </button>
       </div>
@@ -147,20 +138,7 @@ export const AddRecordForm: React.FC<AddRecordFormProps> = ({
             disabled={!Boolean(errors)}
             onClick={handleSubmit(onSubmit)}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-10 w-10"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.3}
-                d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
+            <ArrowCycleRight />
           </button>
         </div>
       </form>
